@@ -75,13 +75,38 @@ public class UserService {
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public void test3() {
 		User user = new User();
-		user.setId(2);
+		user.setId(1);
 		user.setUsername("Robin Chen 3-2");
 		
 		this.mapper.updateByPrimaryKeySelective(user);
 		System.out.println("OK.");
 		
 		throw new RuntimeException();
+	}
+	
+	/**
+	 * 测试在调用的方法启动新事务（新方法在同一个Service与不同Service的区别）
+	 */
+	@Transactional
+	public void test4() {
+		User user = new User();
+		user.setId(1);
+		user.setUsername("Test 4");
+		
+		this.mapper.updateByPrimaryKeySelective(user);
+		System.out.println("OK.");
+		
+		try {
+			// this.anotherUserService.test4RequiresNew(); // 情况一
+			this.anotherUserService.test4Nested(); // 情况二
+		} catch (Exception e) {
+			System.out.println("Catched a exception.");
+		}
+		
+		/* 抛出异常。判断是为了通过编译 */
+		if (1 == 1) {
+			// throw new RuntimeException();
+		}
 	}
 	
 }
