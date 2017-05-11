@@ -8,7 +8,7 @@
        http://www.dangdang.com/schema/ddframe/job http://www.dangdang.com/schema/ddframe/job/job.xsd">
 
 	<!--Zookeeper注册中心 -->
-	<reg:zookeeper id="center" server-lists="119.23.206.23:2181"
+	<reg:zookeeper id="center" server-lists="192.168.1.101:2181"
 		namespace="my-elastic-job" base-sleep-time-milliseconds="500"
 		max-sleep-time-milliseconds="3000" max-retries="3" />
 
