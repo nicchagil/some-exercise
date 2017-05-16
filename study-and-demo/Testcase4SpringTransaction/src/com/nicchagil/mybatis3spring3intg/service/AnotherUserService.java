@@ -30,11 +30,16 @@ public class AnotherUserService {
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public void test4RequiresNew() {
 		User user = new User();
-		user.setId(1);
+		user.setId(2);
 		user.setUsername("REQUIRES_NEW");
 		
 		this.mapper.updateByPrimaryKeySelective(user);
 		System.out.println("OK.");
+		
+		/* 抛出异常。判断是为了通过编译 */
+		if (1 == 1) {
+			// throw new RuntimeException();
+		}
 	}
 	
 	@Transactional(propagation=Propagation.NESTED)

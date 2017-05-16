@@ -97,15 +97,15 @@ public class UserService {
 		System.out.println("OK.");
 		
 		try {
-			// this.anotherUserService.test4RequiresNew(); // 情况一
-			this.anotherUserService.test4Nested(); // 情况二
+			this.anotherUserService.test4RequiresNew(); // 情况一
+			// this.anotherUserService.test4Nested(); // 情况二
 		} catch (Exception e) {
 			System.out.println("Catched a exception.");
 		}
 		
 		/* 抛出异常。判断是为了通过编译 */
 		if (1 == 1) {
-			// throw new RuntimeException();
+			throw new RuntimeException();
 		}
 	}
 	

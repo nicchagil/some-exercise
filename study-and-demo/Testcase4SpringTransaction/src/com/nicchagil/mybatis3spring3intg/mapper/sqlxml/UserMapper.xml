@@ -14,21 +14,21 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from t_user
+    from t_user_test_transaction
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from t_user
+    delete from t_user_test_transaction
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.nicchagil.mybatis3spring3intg.bean.User" >
-    insert into t_user (id, username, password, 
+    insert into t_user_test_transaction (id, username, password, 
       childhoodname, age)
     values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{childhoodname,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.nicchagil.mybatis3spring3intg.bean.User" >
-    insert into t_user
+    insert into t_user_test_transaction
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -65,7 +65,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.nicchagil.mybatis3spring3intg.bean.User" >
-    update t_user
+    update t_user_test_transaction
     <set >
       <if test="username != null" >
         username = #{username,jdbcType=VARCHAR},
@@ -83,7 +83,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.nicchagil.mybatis3spring3intg.bean.User" >
-    update t_user
+    update t_user_test_transaction
     set username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       childhoodname = #{childhoodname,jdbcType=VARCHAR},
