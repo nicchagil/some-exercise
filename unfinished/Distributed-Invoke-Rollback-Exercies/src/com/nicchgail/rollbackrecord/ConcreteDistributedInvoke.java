@@ -11,8 +11,9 @@ public class ConcreteDistributedInvoke extends AbstractDistributedInvoke {
 
 	@Override
 	public void doInvoke() {
-		// RandomExceptionUtil.randomException("调用业务接口");
-		throw new RuntimeException("调用业务接口" + "假设异常");
+		// 为了测试异常情况，这里总是抛出异常
+		throw new RuntimeException("调用业务接口" + "发生异常");
+		
 		// this.logger.info("调用业务接口成功");
 	}
 

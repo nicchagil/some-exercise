@@ -16,16 +16,16 @@ public abstract class AbstractDistributedInvoke {
 	
 	public void invoke() {
 		try {
-			this.doInvoke();
+			this.doInvoke(); // 实际业务接口调用
 		} catch (Exception e) {
-			logger.info("业务调用失败：" + e.getMessage() + "，需回滚");
+			logger.info("业务调用出现异常，需回滚：" + e.getMessage());
 			this.rollbackRecordService.insert(new RollbackRecord()); // 先插入需回滚记录
 			
 			try {
 				this.doRollback();
 				this.rollbackRecordService.update4Finish(new RollbackRecord()); // 回滚结果正确则更新需回滚记录的状态为已回滚
 			} catch (Exception se) {
-				logger.info("回滚失败：后续根据需回滚记录重试回滚");
+				logger.info("回滚调用失败（由于t_rollback_log已存在待回滚记录，此时无需处理即可）");
 			}
 			
 		}
