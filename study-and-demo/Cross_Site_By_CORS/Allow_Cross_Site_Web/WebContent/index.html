@@ -10,11 +10,7 @@
 	
 	function login() {
 		$.ajax({
-			url : "http://nick-huang.com:8080/Allow_Cross_Site_Web/LoginServlet",
-			type : "post",
-			xhrFields: {
-				withCredentials : true
-			},
+			url : "http://nicchagil.com:8080/Allow_Cross_Site_Web/LoginServlet",
 			success : function(data, name) {
 				alert(data)
 			}
@@ -23,8 +19,8 @@
 	
 	function test() {
 		$.ajax({
-			url : "http://nick-huang.com:8080/Allow_Cross_Site_Web/BusinessServlet",
-			type : "post",
+			url : "http://nicchagil.com:8080/Allow_Cross_Site_Web/BusinessServlet",
+			type : "get",
 			xhrFields: {
 				withCredentials : true
 			},
