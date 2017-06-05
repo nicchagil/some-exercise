@@ -9,13 +9,13 @@ public class RollbackRecordDAO {
 	Logger logger = Logger.getLogger("RollbackRecordDAO");
 	
 	public void insert(RollbackRecord record) {
-		RandomExceptionUtil.randomException("记录回滚日志");
-		logger.info("记录回滚日志成功");
+		RandomExceptionUtil.randomException("插入t_rollback_log（回滚状态为待回滚）", record);
+		logger.info("插入t_rollback_log成功（回滚状态为待回滚）");
 	}
 	
 	public void update4Finish(RollbackRecord record) {
-		RandomExceptionUtil.randomException("更新回滚日志");
-		logger.info("更新回滚日志成功");
+		RandomExceptionUtil.randomException("更新t_rollback_log（回滚状态为已回滚）", record);
+		logger.info("更新t_rollback_log成功（回滚状态为已回滚）");
 	}
 
 }

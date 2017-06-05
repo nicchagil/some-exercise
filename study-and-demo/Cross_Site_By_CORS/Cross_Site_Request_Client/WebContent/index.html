@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Index page</title>
+
+<script type="text/javascript"
+	src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+	
+	function login() {
+		$.ajax({
+			url : "http://nick-huang.com:8080/Allow_Cross_Site_Web/LoginServlet",
+			type : "post",
+			xhrFields: {
+				withCredentials : true
+			},
+			success : function(data, name) {
+				alert(data)
+			}
+		});
+	}
+	
+	function test() {
+		$.ajax({
+			url : "http://nick-huang.com:8080/Allow_Cross_Site_Web/BusinessServlet",
+			type : "post",
+			xhrFields: {
+				withCredentials : true
+			},
+			success : function(data, name) {
+				alert(data)
+			}
+		});
+	}
+	
+	$(document).ready(function() {
+		
+	});
+	
+</script>
+
+</head>
+<body>
+<a href="javascript:login();">login</a> <br/>
+<a href="javascript:test();">test</a> <br/>
+</body>
+</html>
