@@ -1,4 +1,4 @@
-package com.nicchagil;
+package com.nicchagil.test;
 
 import java.io.IOException;
 

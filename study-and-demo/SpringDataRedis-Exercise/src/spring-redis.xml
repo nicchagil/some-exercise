@@ -27,7 +27,7 @@
 	<!-- 连接工厂 -->
 	<bean id="connectionFactory"
 		class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
-		p:host-name="119.23.206.23" p:port="6379" p:password=""
+		p:host-name="nick-huang.example" p:port="6379" p:password=""
 		p:pool-config-ref="poolConfig" />
 
 	<!-- String模板 -->
