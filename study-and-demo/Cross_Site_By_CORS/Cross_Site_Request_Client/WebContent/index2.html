@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Index page</title>
+
+<script type="text/javascript"
+	src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+
+	function getSessionIdFromCookie(){
+	    var c_name = 'SESSIONID';  
+	    if(document.cookie.length>0){  
+	       c_start=document.cookie.indexOf(c_name + "="); 
+	       if(c_start!=-1){ 
+	         c_start=c_start + c_name.length+1;
+	         c_end=document.cookie.indexOf(";",c_start);  
+	         if(c_end==-1) c_end=document.cookie.length;  
+	         alert( unescape(document.cookie.substring(c_start,c_end)) );  
+	       }
+	    } else {
+	    	alert('0 cookie');
+	    }
+	}
+	
+	function login() {
+		$.ajax({
+			url : $('#loginUrl').val(),
+			type : "post",
+			data : {
+				xxx : ''
+			},
+			xhrFields: {
+				withCredentials : true
+			},
+			success : function(data, name) {
+				$('#SESSIONID').val(data.data.session);
+			}
+		});
+	}
+	
+	function test() {
+		$.ajax({
+			url : $('#testUrl').val(),
+			type : "post",
+			xhrFields: {
+				withCredentials : true
+			},
+			success : function(data, name) {
+				alert(data)
+			}
+		});
+	}
+	
+	$(document).ready(function() {
+		
+	});
+	
+</script>
+
+</head>
+<body>
+Login URL : <input id="loginUrl" value="" style="width:500px" ><br/>
+<a href="javascript:login();">login</a> <br/><br/>
+
+Test URL : <input id="testUrl" value="" style="width:500px" ><br/>
+SessionID : <input id="SESSIONID" value="" style="width:500px" ><br/>
+<a href="javascript:test();">test</a> <br/><br/>
+
+<a href="javascript:getSessionIdFromCookie();">getSessionIdFromCookie</a> <br/>
+</body>
+</html>
