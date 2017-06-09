@@ -28,9 +28,13 @@ public class SessionTestServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		this.logger.info("session : " + session);
 		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String username = request.getParameter("username");
+		if (username != null && username.length() > 0) {
+			session.setAttribute("username", username);
+		}
+		
+		response.getWriter().append("Served at: ").append(request.getContextPath()).append(", userName : " + session.getAttribute("username"));
 	}
 
 	/**

@@ -54,5 +54,11 @@
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.0.1</version>
 		</dependency>
+		
+		<dependency>
+                <groupId>biz.paluch.redis</groupId>
+                <artifactId>lettuce</artifactId>
+                <version>3.5.0.Final</version>
+        </dependency>
 	</dependencies>
 </project>

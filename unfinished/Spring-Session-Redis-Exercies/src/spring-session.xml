@@ -22,5 +22,8 @@
 		class="org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration">
 		<property name="maxInactiveIntervalInSeconds" value="1800" />
 	</bean>
+	
+	<bean id="httpSessionConfig" class="com.nicchagil.HttpSessionConfig">
+	</bean>
 
 </beans>
