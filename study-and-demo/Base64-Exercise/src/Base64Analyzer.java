@@ -13,24 +13,24 @@ public class Base64Analyzer {
 		System.out.println(bitStr);
 		
 		int bitSize = 6;
-		String s = null;
+		String sixBitStr = null;
 		Integer index = null;
+		char base64Char;
 		StringBuffer base64SB = new StringBuffer();
 		for (int i = 0; i < bitStr.length(); i += 6) {
 			/* 二进制按6位分组 */
-			s = bitStr.substring(i, i + 6 > bitStr.length() ? bitStr.length() : i + 6);
-			if (s.length() == 6) {
-				System.out.println(s);
-			} else {
-				s = s + String.format("%0" + (bitSize - s.length()) + "d", 0); // 不足位后补0
-				System.out.println(s);
+			sixBitStr = bitStr.substring(i, i + 6 > bitStr.length() ? bitStr.length() : i + 6);
+			if (sixBitStr.length() != 6) {
+				sixBitStr = sixBitStr + String.format("%0" + (bitSize - sixBitStr.length()) + "d", 0); // 不足位后补0
 			}
 			
 			// 将每6位的字符转换为十进制
-			index = BinaryUtils.binary2Decimal(s);
+			index = BinaryUtils.binary2Decimal(sixBitStr);
 			
 			// 根据下标获取对应的Base64字符
-			base64SB.append(Base64Map.getBase64(index));
+			base64Char = Base64Map.getBase64(index);
+			System.out.println(sixBitStr + " -> " + base64Char);
+			base64SB.append(base64Char);
 		}
 		
 		System.out.println(base64SB.toString());
