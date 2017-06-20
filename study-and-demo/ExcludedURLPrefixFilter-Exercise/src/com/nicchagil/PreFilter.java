@@ -29,10 +29,11 @@ public class PreFilter extends BusinessFilter {
 		System.out.println("ServletPath : " + httpServletRequest.getServletPath());
 		
 		if (this.isExcludeURL(httpServletRequest)) { // 是否被排除的URL
-			return;
+			chain.doFilter(httpServletRequest, response);
+		} else {
+			super.doFilter(request, response, chain);
 		}
 		
-		super.doFilter(request, response, chain);
 	}
 
 	@Override
