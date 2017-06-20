@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jms="http://www.springframework.org/schema/jms" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd   
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd   
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd   
+    http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms.xsd">
+    
+    <bean id="redisSentinelConfiguration" class="org.springframework.data.redis.connection.RedisSentinelConfiguration">
+    	<constructor-arg value="mymaster" />
+    	<constructor-arg>
+    		<set>
+    			<value>nick-huang.example:6380</value>
+    			<value>nick-huang.example:16380</value>
+    			<value>nick-huang.example:26380</value>
+    		</set>
+    	</constructor-arg>
+    </bean>
+    
+	<!-- Redis连接工厂 -->
+    <bean id="lettuceConnectionFactory" class="org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory" >
+    	<constructor-arg ref="redisSentinelConfiguration" />
+    </bean>
+
+    <!-- String模板 -->
+	<bean id="stringRedisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">
+		<property name="connectionFactory" ref="lettuceConnectionFactory" />
+	</bean>
+
+</beans>
