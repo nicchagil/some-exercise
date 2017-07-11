@@ -36,19 +36,19 @@
 		<property name="sentinels">
 			<set>
 				<bean class="org.springframework.data.redis.connection.RedisNode">
-					<constructor-arg name="host" value="192.168.1.101">
+					<constructor-arg name="host" value="host-Z-A">
 					</constructor-arg>
 					<constructor-arg name="port" value="26379">
 					</constructor-arg>
 				</bean>
 				<bean class="org.springframework.data.redis.connection.RedisNode">
-					<constructor-arg name="host" value="192.168.1.102">
+					<constructor-arg name="host" value="host-Z-B">
 					</constructor-arg>
 					<constructor-arg name="port" value="26379">
 					</constructor-arg>
 				</bean>
 				<bean class="org.springframework.data.redis.connection.RedisNode">
-					<constructor-arg name="host" value="192.168.1.103">
+					<constructor-arg name="host" value="host-Z-C">
 					</constructor-arg>
 					<constructor-arg name="port" value="26379">
 					</constructor-arg>
