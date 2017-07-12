@@ -1,4 +1,4 @@
-package com.nicchagil.exercies.reentrantlock;
+package com.nicchagil.exercies.reentrantlock.trylock;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
