@@ -1,11 +1,14 @@
 package com.nicchagil.exercies.sleepinterrupt;
 
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
 
 /**
- * 没效果，待修改
+ * 没效果，待修改 TODO
  */
 public class InterruptRunningThread {
+	
+	private static Logger logger = Logger.getLogger(InterruptRunningThread.class.getName());
 	
 	public static boolean mySwitch = true;
 
@@ -14,7 +17,7 @@ public class InterruptRunningThread {
 			@Override
 			public void run() {
 				while (mySwitch) {
-					System.out.println(Thread.currentThread() + "is runing.");
+					logger.info(Thread.currentThread() + "is runing.");
 				}
 			}
 		}).start();
