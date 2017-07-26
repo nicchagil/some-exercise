@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import com.nicchagil.messagelandinghandler.UserLandingLog;
 import com.nicchagil.messagelandinghandler.UserLandingLogDAO;
+import com.nicchagil.messagelandinghandler.framework.constant.BusinessStatusEnum;
 import com.nicchagil.util.JSONUtil;
 
 /**
@@ -22,14 +23,14 @@ public class MessageLandingHandler<T> extends AbstractRemoteOpsHandler<UserLandi
 		try {
 			UserLandingLog log = new UserLandingLog();
 			log.setMessage(JSONUtil.toJSON(t));
-			log.setStatus(BusinessStatus.UNDO.getCode());
+			log.setStatus(BusinessStatusEnum.UNDO.getCode());
 			log.setCreateTime(new Date());
 			log.setUpdateTime(new Date());
 			
 			return this.ops(log);
 		} catch (Exception e) {
-			this.logger.error(this.getPrintMsgIfRemoteOpsException(), t);
-			throw new RuntimeException(this.getPrintMsgIfRemoteOpsException() + t);
+			this.logger.error(this.getPrintMsgIfRemoteOpsException(), t); // 当远程操作方法出现异常，打印到本地日志
+			throw new RuntimeException(this.getPrintMsgIfRemoteOpsException() + t); // 抛出异常，避免后续业务
 		}
 	}
 
@@ -41,6 +42,11 @@ public class MessageLandingHandler<T> extends AbstractRemoteOpsHandler<UserLandi
 	@Override
 	public String getPrintMsgIfRemoteOpsException() {
 		return "UserLandingLog message landing exception(Insert) : {}";
+	}
+
+	@Override
+	public String getPrintMsgIfRemoteOpsComplete() {
+		return "UserLandingLog message landing complete(Insert) : {}";
 	}
 	
 }

@@ -17,13 +17,13 @@ public abstract class AbstractRemoteOpsHandler<T> {
 	public T ops(T t) {
 		T r = null;
 		try {
-			r = this.doOps(t); // 调用实际的落地方法
+			r = this.doOps(t); // 调用实际的远程操作方法
 		} catch (Exception e) {
-			this.logger.error(this.getPrintMsgIfRemoteOpsException(), t); // 当落地方法出现异常，打印到本地日志
-			throw new RuntimeException(this.getPrintMsgIfRemoteOpsException() + t);
+			this.logger.error(this.getPrintMsgIfRemoteOpsException(), t); // 当远程操作方法出现异常，打印到本地日志
+			throw new RuntimeException(this.getPrintMsgIfRemoteOpsException() + t); // 抛出异常，避免后续业务
 		}
 		
-		this.logger.info("Landing complate : {}", t);
+		this.logger.info(this.getPrintMsgIfRemoteOpsComplete(), t);
 		return r;
 	}
 	
@@ -38,5 +38,13 @@ public abstract class AbstractRemoteOpsHandler<T> {
 	 * @return 远程操作出现异常时打印到本地日志的文案
 	 */
 	public abstract String getPrintMsgIfRemoteOpsException();
+	
+	/**
+	 * 获取远程操作成功完成时打印到本地日志的文案
+	 * @return 远程操作成功完成时打印到本地日志的文案
+	 */
+	public String getPrintMsgIfRemoteOpsComplete() {
+		return "Ops complate : {}";
+	}
 	
 }
