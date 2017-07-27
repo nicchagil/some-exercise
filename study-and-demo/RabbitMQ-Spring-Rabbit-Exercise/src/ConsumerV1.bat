@@ -1,0 +1,2 @@
+set CLASSPATH=D:\exercise_workspace\RabbitMQ-Spring-Rabbit-Exercise\target\classes\lib\*;D:\exercise_workspace\RabbitMQ-Spring-Rabbit-Exercise\target\classes;%CLASSPATH%
+java com.nicchagil.springrabbitexercise.BootForConsumerV1

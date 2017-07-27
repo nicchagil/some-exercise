@@ -11,7 +11,7 @@ import com.nicchagil.springrabbitexercise.entity.User;
 public class Producer {
 
 	public static void main(String[] args) {
-		ApplicationContext context = new GenericXmlApplicationContext("classpath:/spring-rabbit.xml");
+		ApplicationContext context = new GenericXmlApplicationContext("classpath:/spring-rabbit-producer.xml");
 		AmqpTemplate template = context.getBean("amqpTemplate", AmqpTemplate.class);
 
 		template.convertAndSend("userSyncQueue", new User(1000000, "Nick Huang", new Date()));

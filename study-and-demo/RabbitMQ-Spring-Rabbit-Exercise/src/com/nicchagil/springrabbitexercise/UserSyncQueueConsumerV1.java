@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import com.nicchagil.springrabbitexercise.entity.User;
 
 @Component
-public class UserSyncQueueConsumer {
+public class UserSyncQueueConsumerV1 {
 
 	@RabbitListener(queues = "userSyncQueue")
 	public void consume(User user) {
