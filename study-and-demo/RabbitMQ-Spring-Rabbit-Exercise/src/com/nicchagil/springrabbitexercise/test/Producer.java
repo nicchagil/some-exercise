@@ -1,4 +1,4 @@
-package com.nicchagil.springrabbitexercise;
+package com.nicchagil.springrabbitexercise.test;
 
 import java.util.Date;
 

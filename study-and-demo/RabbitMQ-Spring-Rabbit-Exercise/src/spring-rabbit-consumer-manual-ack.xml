@@ -7,23 +7,21 @@
            http://www.springframework.org/schema/beans/spring-beans.xsd
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context.xsd">
-           
-    <!-- Spring中引入其他配置文件 -->
+	
+	<!-- Spring中引入其他配置文件 -->
     <import resource="classpath:/spring-rabbit-common.xml" />
     
-    <!-- 开启Rabbit注解 -->
-	<rabbit:annotation-driven />
-	
 	<!-- 扫描Bean的路径 -->
 	<context:component-scan base-package="com.nicchagil"></context:component-scan>
 	
 	<!-- 消费者容器 -->
-	<bean id="rabbitListenerContainerFactory"
-		class="org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory">
-		<property name="connectionFactory" ref="connectionFactory" />
-		<property name="messageConverter" ref="messageConverter" />
-		<property name="concurrentConsumers" value="3" />
-		<property name="maxConcurrentConsumers" value="10" />
-	</bean>
+	<rabbit:listener-container connection-factory="connectionFactory" acknowledge="manual">
+		<rabbit:listener queues="userSyncQueue" ref="userSyncQueueConsumerManualAck"/>
+	</rabbit:listener-container>
 	
+	<!-- 异常处理器 --> 
+    <bean id="myErrorHandler" class="com.nicchagil.springrabbitexercise.MyErrorHandler"/>
+    <!-- 消息回收器 -->    
+    <bean id="myMessageRecoverer" class="com.nicchagil.springrabbitexercise.MyMessageRecoverer" />
+
 </beans>

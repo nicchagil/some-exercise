@@ -10,8 +10,11 @@
 	
 	<!-- 连接工厂 -->
 	<rabbit:connection-factory id="connectionFactory"
-		addresses="xx.xx.xx.xx" username="xx" password="xxx"
+		addresses="host-xxx" username="xxx" password="xxx"
 		virtual-host="/" />
+	
+	<!-- 代理类 -->
+	<rabbit:admin connection-factory="connectionFactory" />
 
 	<!-- 队列 -->
 	<rabbit:queue name="userSyncQueue" />
