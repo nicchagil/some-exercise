@@ -13,7 +13,7 @@
     <import resource="classpath:spring-integration-mqtt-common.xml" />
 
 	<!-- 消息适配器 -->
-	<int-mqtt:message-driven-channel-adapter id="mqttInbound" client-id="#{ T(java.lang.Math).random() * 10000000}" url="tcp://192.168.1.101:1883"
+	<int-mqtt:message-driven-channel-adapter id="mqttInbound" client-id="CLIENT_001" url="tcp://192.168.1.101:1883"
 		topics="myqueue" qos="1" client-factory="clientFactory"
 		auto-startup="true" send-timeout="12" channel="myChannel" />
 

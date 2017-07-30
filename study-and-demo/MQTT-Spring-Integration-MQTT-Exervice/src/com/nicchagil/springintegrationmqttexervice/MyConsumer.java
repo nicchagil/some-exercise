@@ -11,7 +11,7 @@ public class MyConsumer {
 	public void consumerForBusiness(String message) {
 		logger.info("开始处理：" + message);
 		
-		int random = new Random().nextInt(2);
+		int random = new Random().nextInt(2); // 这里只测试0、1两种情况。TODO 2即抛出异常的情况需另外处理
 		if (random == 0) {
 			logger.info("模拟业务正常完成");
 			
