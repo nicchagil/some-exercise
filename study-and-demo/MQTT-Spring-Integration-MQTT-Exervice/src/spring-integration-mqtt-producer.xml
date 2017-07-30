@@ -14,7 +14,7 @@
 	
 	<bean id="mqttPahoMessageHandler" class="org.springframework.integration.mqtt.outbound.MqttPahoMessageHandler" >  
         <constructor-arg name="url" value="tcp://192.168.1.101:1883"></constructor-arg>  
-        <constructor-arg name="clientId" value="#{ T(java.lang.Math).random() * 10000000}"></constructor-arg>  
+        <constructor-arg name="clientId" value="CLIENT_001"></constructor-arg>  
         <constructor-arg name="clientFactory" ref="clientFactory"></constructor-arg>  
     </bean>
 

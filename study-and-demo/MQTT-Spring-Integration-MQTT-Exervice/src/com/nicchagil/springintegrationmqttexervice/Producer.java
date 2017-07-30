@@ -17,7 +17,7 @@ public class Producer {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"spring-integration-mqtt-producer.xml"});
 		MqttPahoMessageHandler mqttPahoMessageHandler = context.getBean("mqttPahoMessageHandler", MqttPahoMessageHandler.class);
 		
-		for (int i = 1; i < 10; i++) {
+		for (int i = 1; i <= 3 ; i++) {
 			send(mqttPahoMessageHandler, "hello world " + i);
 			
 			try {
