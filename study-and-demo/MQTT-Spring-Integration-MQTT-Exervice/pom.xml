@@ -1,0 +1,44 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.nicchagil</groupId>
+	<artifactId>MQTT-Spring-Integration-MQTT-Exervice</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.5.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.webflow</groupId>
+			<artifactId>spring-webflow</artifactId>
+			<version>2.3.4.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.integration</groupId>
+			<artifactId>spring-integration-mqtt</artifactId>
+			<version>4.1.0.RELEASE</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.eclipse.paho</groupId>
+					<artifactId>mqtt-client</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.paho</groupId>
+			<artifactId>org.eclipse.paho.client.mqttv3</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+	</dependencies>
+</project>

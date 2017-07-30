@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:int-mqtt="http://www.springframework.org/schema/integration/mqtt"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration-4.1.xsd
+    http://www.springframework.org/schema/integration/mqtt http://www.springframework.org/schema/integration/mqtt/spring-integration-mqtt-4.1.xsd">
+
+	<!-- Spring中引入公共配置文件 -->
+    <import resource="classpath:spring-integration-mqtt-common.xml" />
+	
+	<bean id="mqttPahoMessageHandler" class="org.springframework.integration.mqtt.outbound.MqttPahoMessageHandler" >  
+        <constructor-arg name="url" value="tcp://192.168.1.101:1883"></constructor-arg>  
+        <constructor-arg name="clientId" value="#{ T(java.lang.Math).random() * 10000000}"></constructor-arg>  
+        <constructor-arg name="clientFactory" ref="clientFactory"></constructor-arg>  
+    </bean>
+
+</beans>
