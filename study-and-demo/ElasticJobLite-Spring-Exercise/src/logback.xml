@@ -40,15 +40,4 @@
 		<appender-ref ref="ROLLING_FILE_OUT" />
 	</root>
 
-	<!-- 为com.nicchagil包专属logger的定义 -->
-	<logger name="com.nicchagil" level="INFO">
-		<appender-ref ref="CONSOLE_OUT" />
-		<appender-ref ref="ROLLING_FILE_OUT" />
-	</logger>
-	
-	<logger name="org.apache.zookeeper" level="INFO">
-		<appender-ref ref="CONSOLE_OUT" />
-		<appender-ref ref="ROLLING_FILE_OUT" />
-	</logger>
-	
 </configuration>

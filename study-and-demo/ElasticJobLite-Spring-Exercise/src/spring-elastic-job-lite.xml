@@ -8,12 +8,14 @@
        http://www.dangdang.com/schema/ddframe/job http://www.dangdang.com/schema/ddframe/job/job.xsd">
 
 	<!--Zookeeper注册中心 -->
-	<reg:zookeeper id="center" server-lists="xx.xx.xx.xx:2181"
+	<reg:zookeeper id="center" server-lists="127.0.0.1:2181"
 		namespace="my-elastic-job-nn" base-sleep-time-milliseconds="500"
 		max-sleep-time-milliseconds="3000" max-retries="3" />
 
-	<!-- 配置作业 -->
-	<job:simple id="mySimpleJobX10" class="MySimpleJob"
-		registry-center-ref="center" cron="0/3 * * * * ?" sharding-total-count="1"/>
+	<!-- 配置简单作业 -->
+	<job:simple id="mySimpleJob" class="com.nicchagil.MySimpleJob"
+		registry-center-ref="center" cron="0/5 * * * * ?" sharding-total-count="3" 
+		sharding-item-parameters="0=X,1=Y,2=Z" job-parameter="userId=123456" 
+		disabled="false" overwrite="true" />
 		
 </beans>
