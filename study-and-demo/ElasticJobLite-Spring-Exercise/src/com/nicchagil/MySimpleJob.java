@@ -13,12 +13,7 @@ public class MySimpleJob implements SimpleJob {
 
 	@Override
 	public void execute(ShardingContext shardingContext) {
-		logger.info(shardingContext.getShardingItem() + " - JobName : {}, JobParameter : {}, "
-				+ "ShardingItem : {}, ShardingParameter : {}, "
-				+ "ShardingTotalCount : {}, TaskId : {}", 
-				shardingContext.getJobName(), shardingContext.getJobParameter(), 
-				shardingContext.getShardingItem(), shardingContext.getShardingParameter(), 
-				shardingContext.getShardingTotalCount(), shardingContext.getTaskId());
+		logger.info(">>> " + shardingContext.getShardingItem() + "<<<");
 	}
 	
 }

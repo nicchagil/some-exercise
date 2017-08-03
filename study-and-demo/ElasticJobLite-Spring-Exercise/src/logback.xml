@@ -35,7 +35,7 @@
 	</appender>
 
 	<!-- 根logger的定义 -->
-	<root level="INFO">
+	<root level="DEBUG">
 		<appender-ref ref="CONSOLE_OUT" />
 		<appender-ref ref="ROLLING_FILE_OUT" />
 	</root>
