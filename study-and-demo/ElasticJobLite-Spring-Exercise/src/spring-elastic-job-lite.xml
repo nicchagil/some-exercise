@@ -13,8 +13,7 @@
 		max-sleep-time-milliseconds="3000" max-retries="3" />
 
 	<!-- 配置作业 -->
-	<job:simple id="mySimpleJob" class="MySimpleJob"
-		registry-center-ref="center" cron="0/3 * * * * ?"
-		sharding-total-count="2" />
+	<job:simple id="mySimpleJobX10" class="MySimpleJob"
+		registry-center-ref="center" cron="0/3 * * * * ?" sharding-total-count="1"/>
 		
 </beans>
