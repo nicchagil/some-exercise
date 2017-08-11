@@ -1,7 +1,9 @@
 package com.nicchagil.jdbcexercise;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -11,19 +13,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 public class JDBCTools {
     
     public static void main(String[] args) throws Exception {
         JDBCTools.query("select * from t_balance t");
-        JDBCTools.execute("update t_balance t set t.balance = 20000 where t.user_id = 100");
+        JDBCTools.execute("update t_balance t set t.balance = ? where t.user_id = ?", new Object[] {Integer.valueOf("1000"), Integer.valueOf("123456")});
         JDBCTools.query("select * from t_balance t");
     }
     
-    public static String HOST = "localhost";
+    public static String HOST = "xx.xx.xx.xx";
     public static String PORT = "3306";
-    public static String DATABASE_NAME = "demo";
-    public static String USER_NAME = "root";
-    public static String PASSWORD = "123456";
+    public static String DATABASE_NAME = "mysql-db";
+    public static String USER_NAME = "xxx";
+    public static String PASSWORD = "xxx";
     
     /**
      * 获取数据库连接
@@ -120,9 +123,9 @@ public class JDBCTools {
      * @param sql 执行的SQL
      * @return 操作条数
      */
-    public static int execute(String sql) throws Exception {
+    public static int execute(String sql, Object[] objects) throws Exception {
         Connection connection = null;
-        Statement statement = null;
+        PreparedStatement preparedStatement  = null;
         ResultSet resultSet = null;
         int num = 0;
         
@@ -130,8 +133,29 @@ public class JDBCTools {
             connection = JDBCTools.getConn();
             connection.setAutoCommit(false);
             
-            statement = connection.createStatement();
-            num = statement.executeUpdate(sql);
+            System.out.println("sql -> " + sql);
+            preparedStatement = connection.prepareStatement(sql);
+            if (objects != null && objects.length != 0) {
+            	
+            	Integer realIndex = null;
+            	for (int i = 0; i < objects.length; i++) {
+            		if (objects[i] == null) {
+            			throw new RuntimeException("参数为空");
+            		}
+            		
+            		realIndex = i + 1;
+            		/* 目前只支持Integer、String、Date */
+            		if (objects[i] instanceof Integer) {
+            			preparedStatement.setInt(realIndex, (Integer)objects[i]);
+            		} else if (objects[i] instanceof String) {
+            			preparedStatement.setString(realIndex, (String)objects[i]);
+            		} else if (objects[i] instanceof Date) {
+            			preparedStatement.setDate(realIndex, (Date)objects[i]);
+            		}
+            	}
+            }
+            
+            num = preparedStatement.executeUpdate();
             System.out.println("成功操作数据库，影响条数：" + num);
             
             // 模拟异常，用于测试事务
@@ -149,7 +173,7 @@ public class JDBCTools {
             System.out.println("事务回滚");
             throw e;
         } finally {
-            JDBCTools.closeResource(connection, statement, resultSet);
+            JDBCTools.closeResource(connection, preparedStatement, resultSet);
         }
         
         return num;
