@@ -13,33 +13,48 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class JDBCTools {
+
+public class JDBCUtil {
+	
+	private static Logger LOG = LoggerFactory.getLogger(JDBCUtil.class);
     
     public static void main(String[] args) throws Exception {
-        JDBCTools.query("select * from t_balance t");
-        JDBCTools.execute("update t_balance t set t.balance = ? where t.user_id = ?", new Object[] {Integer.valueOf("1000"), Integer.valueOf("123456")});
-        JDBCTools.query("select * from t_balance t");
+        JDBCUtil.query("select * from t_balance t");
+        JDBCUtil.execute("update t_balance t set t.balance = ? where t.user_id = ?", new Object[] {Integer.valueOf("1000"), Integer.valueOf("123456")});
+        JDBCUtil.query("select * from t_balance t");
     }
     
-    public static String HOST = "xx.xx.xx.xx";
+    public static String HOST = "rm-wz97ap7j1u0csxu0yo.mysql.rds.aliyuncs.com";
     public static String PORT = "3306";
-    public static String DATABASE_NAME = "mysql-db";
-    public static String USER_NAME = "xxx";
-    public static String PASSWORD = "xxx";
+    public static String DATABASE_NAME = "blog";
+    public static String USER_NAME = "root";
+    public static String PASSWORD = "AlyDB((((((";
     
     /**
      * 获取数据库连接
      * @return 数据库连接
+     * @throws  
      */
-    public static Connection getConn() throws Exception {
-        Class.forName("com.mysql.jdbc.Driver");
-        System.out.println("成功加载驱动");
+    public static Connection getConn() {
+        try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException(e);
+		}
+        LOG.info("成功加载驱动");
         
         String url = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE_NAME + "?user=" + USER_NAME + "&password=" + PASSWORD + "&useUnicode=true&characterEncoding=UTF8";
-        Connection connection = DriverManager.getConnection(url);
-        System.out.println("成功获取连接");
-        return connection;
+        Connection connection;
+		try {
+			connection = DriverManager.getConnection(url);
+			LOG.info("成功获取连接");
+	        return connection;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
     }
     
     /**
@@ -50,27 +65,24 @@ public class JDBCTools {
             try {
                 rs.close();
             } catch (SQLException e) {
-                // TODO 处理异常
-                e.printStackTrace();
+            	LOG.error("关闭异常：{}", e);
             }
         }
         if (st != null) {
             try {
                 st.close();
             } catch (SQLException e) {
-                // TODO 处理异常
-                e.printStackTrace();
+            	LOG.error("关闭异常：{}", e);
             }
         }
         if (conn != null) {
             try {
                 conn.close();
             } catch (SQLException e) {
-                // TODO 处理异常
-                e.printStackTrace();
+            	LOG.error("关闭异常：{}", e);
             }
         }
-        System.out.println("成功关闭资源");
+        LOG.info("成功关闭资源");
     }
 
     /**
@@ -79,14 +91,14 @@ public class JDBCTools {
      * @return 数据集合
      * @throws SQLException
      */
-    public static List<Map<String, String>> query(String sql) throws Exception {
+    public static List<Map<String, String>> query(String sql) {
         Connection connection = null;
         Statement statement = null;
         ResultSet resultSet = null;
         List<Map<String, String>> resultList = null;
         
         try {
-            connection = JDBCTools.getConn();
+            connection = JDBCUtil.getConn();
             
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
@@ -107,12 +119,11 @@ public class JDBCTools {
                 }
                 resultList.add(resultMap);
             }
-            System.out.println("成功查询数据库，查得数据：" + resultList);
-        } catch(Throwable t) {
-            // TODO 处理异常
-            t.printStackTrace();
+            LOG.info("成功查询数据库，查得数据：" + resultList);
+        } catch(SQLException e) {
+            throw new RuntimeException(e);
         } finally {
-            JDBCTools.closeResource(connection, statement, resultSet);
+            JDBCUtil.closeResource(connection, statement, resultSet);
         }
         
         return resultList;
@@ -123,17 +134,16 @@ public class JDBCTools {
      * @param sql 执行的SQL
      * @return 操作条数
      */
-    public static int execute(String sql, Object[] objects) throws Exception {
+    public static int execute(String sql, Object[] objects) {
         Connection connection = null;
         PreparedStatement preparedStatement  = null;
         ResultSet resultSet = null;
         int num = 0;
         
         try {
-            connection = JDBCTools.getConn();
+            connection = JDBCUtil.getConn();
             connection.setAutoCommit(false);
             
-            System.out.println("sql -> " + sql);
             preparedStatement = connection.prepareStatement(sql);
             if (objects != null && objects.length != 0) {
             	
@@ -156,7 +166,7 @@ public class JDBCTools {
             }
             
             num = preparedStatement.executeUpdate();
-            System.out.println("成功操作数据库，影响条数：" + num);
+            LOG.info("成功操作数据库，影响条数：" + num);
             
             // 模拟异常，用于测试事务
             /*
@@ -166,14 +176,17 @@ public class JDBCTools {
             */
             
             connection.commit();
-        } catch(Exception e) {
+        } catch(SQLException e) {
             // 处理异常：回滚事务后抛出异常
-            e.printStackTrace();
-            connection.rollback();
-            System.out.println("事务回滚");
-            throw e;
+            try {
+				connection.rollback();
+			} catch (SQLException e1) {
+				throw new RuntimeException(e1);
+			}
+            LOG.info("事务回滚");
+            throw new RuntimeException(e);
         } finally {
-            JDBCTools.closeResource(connection, preparedStatement, resultSet);
+            JDBCUtil.closeResource(connection, preparedStatement, resultSet);
         }
         
         return num;
