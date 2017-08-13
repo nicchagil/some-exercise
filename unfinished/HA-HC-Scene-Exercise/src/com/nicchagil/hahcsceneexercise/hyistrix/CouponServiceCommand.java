@@ -7,8 +7,8 @@ import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.HystrixCommandGroupKey;
 import com.netflix.hystrix.HystrixCommandKey;
 import com.netflix.hystrix.HystrixThreadPoolKey;
-import com.nicchagil.hahcsceneexercise.coupon.Coupon;
-import com.nicchagil.hahcsceneexercise.coupon.CouponService;
+import com.nicchagil.model.Coupon;
+import com.nicchagil.service.CouponService;
 
 public class CouponServiceCommand extends HystrixCommand<Coupon> {
 	

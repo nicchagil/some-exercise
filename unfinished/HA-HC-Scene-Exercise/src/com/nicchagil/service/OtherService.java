@@ -1,4 +1,4 @@
-package com.nicchagil.hahcsceneexercise;
+package com.nicchagil.service;
 
 import com.nicchagil.hahcsceneexercise.util.RandomUtil;
 
