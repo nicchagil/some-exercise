@@ -1,6 +1,6 @@
 package com.nicchagil.service;
 
-import com.nicchagil.hahcsceneexercise.util.RandomUtil;
+import com.nicchagil.util.RandomUtil;
 
 public class OtherService {
 	

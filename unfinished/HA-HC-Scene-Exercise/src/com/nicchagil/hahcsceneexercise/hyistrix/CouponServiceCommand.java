@@ -37,7 +37,7 @@ public class CouponServiceCommand extends HystrixCommand<Coupon> {
 
 	@Override
 	protected Coupon run() throws Exception {
-		return this.couponService.getCoupon(123456);
+		return this.couponService.getCoupon(123456L);
 	}
 	
 	@Override

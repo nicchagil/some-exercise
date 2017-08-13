@@ -7,7 +7,7 @@ public class Coupon {
 
     private String code;
 
-    private Integer used;
+    private Integer status;
 
     private Long userId;
 
@@ -35,15 +35,15 @@ public class Coupon {
         this.code = code == null ? null : code.trim();
     }
 
-    public Integer getUsed() {
-        return used;
-    }
+    public Integer getStatus() {
+		return status;
+	}
 
-    public void setUsed(Integer used) {
-        this.used = used;
-    }
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 
-    public Long getUserId() {
+	public Long getUserId() {
         return userId;
     }
 

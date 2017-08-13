@@ -1,4 +1,4 @@
-package com.nicchagil.hahcsceneexercise.util;
+package com.nicchagil.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,6 +13,7 @@ public class DateTimeUtil {
 	
 	public static String PATTERN_DATE_TIME = "yyyy-MM-dd HH:mm:ss"; // 默认时间格式
 	public static String PATTERN_DATE = "yyyy-MM-dd"; // 默认日期格式
+	public static String PATTERN_DATE_TIME_NUMBER = "yyyyMMddHHmmss";
 	
 	/**
 	 * 格式化成时间字符

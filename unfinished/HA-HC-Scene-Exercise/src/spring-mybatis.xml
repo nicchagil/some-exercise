@@ -1,36 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:context="http://www.springframework.org/schema/context"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 	<!-- JDBC配置数据 -->
-	<context:property-placeholder location="classpath:jdbc.properties"/>
+	<!-- 
+	<context:property-placeholder location="classpath:jdbc.properties" />
+	 -->
 
-    <!-- JDBC Data Source -->
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
-        <property name="driverClassName" value="${driverClassName}" />
-        <property name="url" value="${url}" />
-        <property name="username" value="${username}" />
-        <property name="password" value="${password}" />
-    </bean>
-    
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        <property name="mapperLocations">
-            <list>
-                <value>classpath:com/nicchagil/mapping/*Mapper.xml</value>
-            </list>
-        </property>
-        <property name="typeAliasesPackage" value="com.nicchagil.model" />
-    </bean>
+	<!-- Druid连接池 -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+		<!-- 连接信息 -->
+		<property name="driverClassName" value="${mysql.driverClassName}" />
+		<property name="url" value="${mysql.url}" />
+		<property name="username" value="${mysql.username}" />
+		<property name="password" value="${mysql.password}" />
 
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.nicchagil.dao" />
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
-    </bean>
+		<!-- 初始连接池大小 -->
+		<property name="initialSize" value="100" />
+		<!-- 最大连接池大小 -->
+		<property name="maxActive" value="100" />
+		<!-- 最小连接池大小 -->
+		<property name="minIdle" value="30" />
+		<!-- 获取连接的最大等待时间，单位是毫秒 -->
+		<property name="maxWait" value="60000" />
+		<!-- 检查连接是否有效的SQL -->
+		<property name="validationQuery">
+			<value>SELECT 1</value>
+		</property>
+		<!-- 申请连接时是否检查连接是否有效 -->
+		<property name="testOnBorrow" value="true" />
+		<!-- 归还连接时是否检查连接是否有效 -->
+		<property name="testOnReturn" value="false" />
+		
+		<!-- 空闲时是否检查连接是否有效 -->
+		<property name="testWhileIdle" value="true" />
+		<!-- 空闲时检查连接的间隔时间，单位是毫秒（无效的连接需回收） -->
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		
+		<!-- 连接空闲而不被驱逐的最长时间 -->
+		<property name="minEvictableIdleTimeMillis" value="25200000" />
+	</bean>
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations">
+			<list>
+				<value>classpath:com/nicchagil/mapping/*Mapper.xml</value>
+			</list>
+		</property>
+		<property name="typeAliasesPackage" value="com.nicchagil.model" />
+	</bean>
+
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.nicchagil.dao" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
 
 </beans>

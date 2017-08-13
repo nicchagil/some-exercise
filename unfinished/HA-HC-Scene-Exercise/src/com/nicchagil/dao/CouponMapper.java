@@ -1,5 +1,6 @@
 package com.nicchagil.dao;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.nicchagil.model.Coupon;
@@ -18,8 +19,8 @@ public interface CouponMapper {
 
     int updateByPrimaryKey(Coupon record);
     
-    Coupon getUnusedCoupon();
+    Coupon getUnusedCoupon(Integer status);
     
-    int updateUsedById(Long userId);
+    int updateUsedById(@Param("id")Long id, @Param("userId")Long userId, @Param("oldStatus")Integer oldStatus, @Param("newStatus")Integer newStatus);
     
 }

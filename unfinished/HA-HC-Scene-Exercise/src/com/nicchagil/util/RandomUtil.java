@@ -1,4 +1,4 @@
-package com.nicchagil.hahcsceneexercise.util;
+package com.nicchagil.util;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;

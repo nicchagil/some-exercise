@@ -4,7 +4,7 @@ import java.util.Date;
 
 import org.junit.Test;
 
-import com.nicchagil.hahcsceneexercise.util.DateTimeUtil;
+import com.nicchagil.util.DateTimeUtil;
 
 public class DateTimeUtilTest {
 	
