@@ -1,0 +1,29 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/rabbit 
+           http://www.springframework.org/schema/rabbit/spring-rabbit.xsd
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<!-- RabbitMQ配置数据 -->
+	<context:property-placeholder location="classpath:rabbitmq.properties" />
+	
+	<!-- 连接工厂 -->
+	<rabbit:connection-factory id="connectionFactory"
+		addresses="${rabbitmq.addresses}" username="${rabbitmq.username}" password="${rabbitmq.password}"
+		virtual-host="${rabbitmq.virtual-host}" />
+	
+	<!-- 代理类 -->
+	<rabbit:admin connection-factory="connectionFactory" />
+
+	<!-- 队列 -->
+	<rabbit:queue name="couponQueue" />
+	
+	<!-- 消息转换器 -->
+	<bean id="messageConverter"
+		class="org.springframework.amqp.support.converter.Jackson2JsonMessageConverter" />
+
+</beans>

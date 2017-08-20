@@ -22,6 +22,9 @@ public class CouponService extends AbstractCouponService {
 	@Autowired
 	private CouponRedisService couponRedisService;
 	
+	@Autowired
+	private CouponRabbitMQService couponRabbitMQService;
+	
 	@Value("${coupon_100_max}")
 	private long coupon100Max;
 	
@@ -45,6 +48,11 @@ public class CouponService extends AbstractCouponService {
 			throw new RuntimeException("优惠券已领完");
 		}
 		
+		// 将业务接到RabbitMQ
+		return this.couponRabbitMQService.send(result + 1, userId);
+		
+		// 将业务接到MySQL
+		/*
 		int tries = 0;
 		Coupon c = null;
 		while (true) {
@@ -64,6 +72,7 @@ public class CouponService extends AbstractCouponService {
 		}
 		
 		return c;
+		*/
 	}
 	
 	/**

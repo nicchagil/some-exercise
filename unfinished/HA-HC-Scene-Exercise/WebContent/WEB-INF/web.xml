@@ -12,10 +12,11 @@
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
-	
+
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:spring-ioc.xml,classpath:spring-mybatis.xml,classpath:spring-redis.xml</param-value>
+		<param-value>classpath:spring-ioc.xml,classpath:spring-mybatis.xml,classpath:spring-redis.xml,
+		classpath:spring-rabbit-producer.xml,classpath:spring-rabbit-consumer-auto-ack.xml</param-value>
 	</context-param>
 
 	<servlet>
@@ -31,7 +32,7 @@
 		<servlet-name>Spring-MVC</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	
+
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
