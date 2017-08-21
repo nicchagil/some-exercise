@@ -7,7 +7,7 @@
     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd   
     http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms.xsd">
 
-	<!-- JDBC配置数据 -->
+	<!-- Redis配置数据 -->
 	<context:property-placeholder location="classpath:redis.properties" />
 	
     <!-- 连接池 -->
@@ -24,20 +24,15 @@
         <property name="testWhileIdle" value="true"></property>
     </bean>
     
-    <!-- Redis配置数据 -->
-    <!-- 
-	<context:property-placeholder location="classpath:redis.properties" />
-	 -->
-
     <!-- 连接工厂 -->
-    <bean id="connectionFactory"
+    <bean id="jedisConnectionFactory"
         class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
         p:host-name="${redis.host-name}" p:port="${redis.port}" p:password="${redis.password}" 
         p:pool-config-ref="poolConfig" />
 
     <!-- String模板 -->
     <bean id="stringRedisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">
-        <property name="connectionFactory" ref="connectionFactory" />
+        <property name="connectionFactory" ref="jedisConnectionFactory" />
         
         <!-- 默认序列器是如下配置，看StringRedisTemplate源码可知 -->
         <!-- 
@@ -48,7 +43,7 @@
 
     <!-- 通用模板 -->
     <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
-        <property name="connectionFactory" ref="connectionFactory" />
+        <property name="connectionFactory" ref="jedisConnectionFactory" />
         
         <!-- 默认序列器是如下配置，看RedisTemplate源码可知 -->
         <!-- 

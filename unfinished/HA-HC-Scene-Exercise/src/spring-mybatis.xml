@@ -8,9 +8,7 @@
     http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 	<!-- JDBC配置数据 -->
-	<!-- 
 	<context:property-placeholder location="classpath:jdbc.properties" />
-	 -->
 
 	<!-- Druid连接池 -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">

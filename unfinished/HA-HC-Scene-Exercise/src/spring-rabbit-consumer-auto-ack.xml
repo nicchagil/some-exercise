@@ -20,15 +20,15 @@
 	<!-- 消费者容器 -->
 	<bean id="rabbitListenerContainerFactory"
 		class="org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory">
-		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="connectionFactory" ref="rabbitConnectionFactory" />
 		<property name="messageConverter" ref="messageConverter" />
 		<property name="concurrentConsumers" value="3" />
 		<property name="maxConcurrentConsumers" value="10" />
 	</bean>
 	
 	<!-- 异常处理器 --> 
-    <bean id="myErrorHandler" class="com.nicchagil.springrabbitexercise.MyErrorHandler"/>
+    <bean id="myErrorHandler" class="com.nicchagil.listener.MyErrorHandler"/>
     <!-- 消息回收器 -->    
-    <bean id="myMessageRecoverer" class="com.nicchagil.springrabbitexercise.MyMessageRecoverer" />
+    <bean id="myMessageRecoverer" class="com.nicchagil.listener.MyMessageRecoverer" />
 	
 </beans>

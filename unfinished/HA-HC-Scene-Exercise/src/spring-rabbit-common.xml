@@ -12,12 +12,12 @@
 	<context:property-placeholder location="classpath:rabbitmq.properties" />
 	
 	<!-- 连接工厂 -->
-	<rabbit:connection-factory id="connectionFactory"
-		addresses="${rabbitmq.addresses}" username="${rabbitmq.username}" password="${rabbitmq.password}"
+	<rabbit:connection-factory id="rabbitConnectionFactory"
+		host="${rabbitmq.host}" port="${rabbitmq.port}" username="${rabbitmq.username}" password="${rabbitmq.password}"
 		virtual-host="${rabbitmq.virtual-host}" />
 	
 	<!-- 代理类 -->
-	<rabbit:admin connection-factory="connectionFactory" />
+	<rabbit:admin connection-factory="rabbitConnectionFactory" />
 
 	<!-- 队列 -->
 	<rabbit:queue name="couponQueue" />

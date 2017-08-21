@@ -12,7 +12,7 @@
     <import resource="classpath:/spring-rabbit-common.xml" />
 	
 	<!-- 消息生产者模板 -->
-	<rabbit:template id="amqpTemplate" connection-factory="connectionFactory"
+	<rabbit:template id="amqpTemplate" connection-factory="rabbitConnectionFactory"
 		message-converter="messageConverter" />
 
 </beans>
