@@ -6,11 +6,16 @@
 	<display-name>Hessian-Exercise</display-name>
 
 	<servlet>
-		<servlet-name>userAPI</servlet-name>
-		<servlet-class>com.nicchagil.hessianexercise.server.UserService</servlet-class>
+		<servlet-name>HessianServlet</servlet-name>
+		<servlet-class>com.caucho.hessian.server.HessianServlet</servlet-class>
+		
+		<init-param>
+            <param-name>service-class</param-name>
+            <param-value>com.nicchagil.hessianexercise.server.UserService</param-value>
+        </init-param>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>userAPI</servlet-name>
+		<servlet-name>HessianServlet</servlet-name>
 		<url-pattern>/userAPI</url-pattern>
 	</servlet-mapping>
 

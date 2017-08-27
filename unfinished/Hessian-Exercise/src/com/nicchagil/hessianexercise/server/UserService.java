@@ -2,9 +2,7 @@ package com.nicchagil.hessianexercise.server;
 
 import java.util.Date;
 
-import com.caucho.hessian.server.HessianServlet;
-
-public class UserService extends HessianServlet implements UserAPI {
+public class UserService implements UserAPI {
 
 	@Override
 	public User getUser() {
