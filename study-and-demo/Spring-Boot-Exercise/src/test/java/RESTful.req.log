@@ -11,5 +11,8 @@
 # curl -X GET "http://127.0.0.1:8080/user/123"
 {"id":123,"name":"NH","createTime":1503900218236}
 
+# curl -X GET "http://127.0.0.1:8080/user?name=NK"
+列表参数 -> UserPage [name=NK, getPage()=1, getPageSize()=20]
+
 
 

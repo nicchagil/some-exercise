@@ -64,4 +64,14 @@ public class UserController {
         return "无此用户";
     }
 	
+	/**
+	 * 获取用户列表
+	 */
+	@RequestMapping(value="", method=RequestMethod.GET)
+    public Object list(UserPage userPage) {
+		Assert.notNull(userPage, "参数异常");
+		
+        return "列表参数 -> " + userPage;
+    }
+	
 }
