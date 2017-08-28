@@ -1,0 +1,15 @@
+
+# curl -X POST "http://127.0.0.1:8080/user/" -d "id=456&name=VK"
+添加 -> User [id=456, name=VK, createTime=null]
+
+# curl -X DELETE "http://127.0.0.1:8080/user/123"
+删除用户 -> 123
+
+# curl -X PUT "http://127.0.0.1:8080/user/" -d "id=789&name=VK"
+更新 -> User [id=789, name=VK, createTime=null]
+
+# curl -X GET "http://127.0.0.1:8080/user/123"
+{"id":123,"name":"NH","createTime":1503900218236}
+
+
+
