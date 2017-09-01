@@ -7,11 +7,13 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.logging.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class HelloBusinessThread extends Thread {
 	
-	private static Logger logger = Logger.getLogger("HelloBusinessThread");
+	Logger logger = LoggerFactory.getLogger(HelloBusinessThread.class);
 	
 	Socket socket = null;
 	
@@ -33,7 +35,7 @@ public class HelloBusinessThread extends Thread {
 			
 			PrintWriter printWriter = new PrintWriter(outputStream);
 			printWriter.println("hello");
-			logger.info("发送一个相应");
+			logger.info("发送一个响应");
 			printWriter.flush();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
