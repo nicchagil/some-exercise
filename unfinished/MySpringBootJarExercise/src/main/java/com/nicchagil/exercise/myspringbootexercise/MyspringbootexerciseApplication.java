@@ -16,7 +16,7 @@ public class MyspringbootexerciseApplication {
 	public static void main(String[] args) {
 		ApplicationContext applicationContext = SpringApplication.run(MyspringbootexerciseApplication.class, args);
 		
-		UserService userService = applicationContext.getBean(UserService.class);
+		UserService userService = applicationContext.getBean(UserService.class); // 从IOC容器中获取Bean
 		logger.info("userService -> {}", userService);
 	}
 }
