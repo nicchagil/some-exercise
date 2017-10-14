@@ -1,0 +1,11 @@
+server:
+  port: 9000 # Web服务器监听的连接端口
+spring:
+  output:
+    ansi:
+      enabled: always # 总是使用ANSI输出（彩色）。此选项默认是detect，即检测是否支持ANSI，支持才启用
+logging:
+  file: d:/logs/spring-boot-exercise.log
+  level:
+    com.nicchagil: debug # com.nicchagil包下为DEBUG输出级别
+    root: info
