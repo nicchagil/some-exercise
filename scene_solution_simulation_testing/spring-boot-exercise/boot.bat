@@ -1,0 +1,1 @@
+java -XX:+PrintGCDetails -XX:+PrintGC:PrintGCTimeStamps -Xloggc:gc.log -jar spring-boot-exercise-0.0.1-SNAPSHOT.jar

@@ -38,10 +38,16 @@
 			<scope>test</scope>
 		</dependency>
 		
-		<!-- Spring Boot测试模块 -->
+		<!-- Spring Boot Web模块 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<!-- Spring Boot AMQP模块 -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-amqp</artifactId>
 		</dependency>
 	</dependencies>
 
