@@ -10,6 +10,9 @@ spring:
     username: user001
     password: 123456
     virtualHost: /
+    listener:
+      simple:
+        acknowledge-mode: none # 确认模式。none，客户端无须确认（服务端出队则认为是确认）；manual，客户端手动确认；auto，客户端应用框架自动确认（注意：抛出异常则不会自动确认）
 logging:
   file: d:/logs/spring-boot-exercise.log
   level:

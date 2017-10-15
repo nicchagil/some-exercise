@@ -13,6 +13,9 @@ public class MyQueueConsumer {
 	@RabbitListener(queues = "my-queue")
 	public void processMessage(String content) {
 		this.logger.info("消费消息：{}", content);
+		
+		// 测试抛出异常是否确认消息
+		// throw new NullPointerException("测试抛出异常是否确认消息");
 	}
 
 }

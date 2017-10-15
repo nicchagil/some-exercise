@@ -49,6 +49,13 @@
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-amqp</artifactId>
 		</dependency>
+
+		<!-- Spring Boot 配置处理器模块 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
 	</dependencies>
 
 	<!-- 配置各环节的配置关键字，指定默认环境 -->
