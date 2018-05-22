@@ -10,6 +10,7 @@ import org.springframework.util.Assert;
 
 import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
+import com.nicchagil.constant.WcConstants;
 import com.nicchagil.util.DictOrderUtils;
 import com.nicchagil.util.Sha1Utils;
 import com.nicchagil.vo.WecharVerifyVo;
@@ -31,7 +32,7 @@ public class WechatVerifyService {
 		Assert.hasText(wecharVerifyVo.getEchostr(), "响应字符串不能为空");
 		
 		/* 排字典序 */
-		String token = "YOUR TOKEN";
+		String token = WcConstants.VERIFY_SERVER_TOKEN;
 		List<String> sourceList = Lists.newArrayList(token, wecharVerifyVo.getNonce(), wecharVerifyVo.getTimestamp());
 		sourceList = DictOrderUtils.dictOrder(sourceList);
 		
