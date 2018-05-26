@@ -10,9 +10,9 @@ import org.springframework.util.Assert;
 
 import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
-import com.nicchagil.constant.WcConstants;
 import com.nicchagil.util.DictOrderUtils;
 import com.nicchagil.util.Sha1Utils;
+import com.nicchagil.util.wc.WcConstants;
 import com.nicchagil.vo.WecharVerifyVo;
 
 @Service

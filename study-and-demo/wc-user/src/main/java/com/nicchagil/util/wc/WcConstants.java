@@ -1,4 +1,4 @@
-package com.nicchagil.constant;
+package com.nicchagil.util.wc;
 
 public interface WcConstants {
 	

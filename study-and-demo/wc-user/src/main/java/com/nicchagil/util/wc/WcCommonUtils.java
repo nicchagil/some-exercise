@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.google.common.collect.Lists;
-import com.nicchagil.constant.WcConstants;
 import com.nicchagil.util.JsonUtils;
 import com.nicchagil.util.http.UrlUtils;
 import com.nicchagil.util.http.UrlUtils.KeyVal;
