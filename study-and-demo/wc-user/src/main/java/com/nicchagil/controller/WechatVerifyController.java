@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.nicchagil.service.WechatVerifyService;
+import com.nicchagil.util.wc.service.WechatVerifyService;
 import com.nicchagil.vo.WecharVerifyVo;
 
 @RestController

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import com.nicchagil.service.AccessTokenService;
+import com.nicchagil.util.wc.service.AccessTokenService;
 
 @Component
 public class ScheduledJob {

@@ -1,4 +1,4 @@
-package com.nicchagil.service;
+package com.nicchagil.util.wc.service;
 
 import java.util.List;
 
