@@ -37,8 +37,8 @@
 		</dependency>
 		
 		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-data-redis</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
 
 		<dependency>
@@ -52,12 +52,19 @@
 			<artifactId>guava</artifactId>
 			<version>23.0</version>
 		</dependency>
-		
+
 		<!-- ConfigurationProperties推荐引入的 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
+		</dependency>
+
+		<!-- Apache HttpClient Fluent API -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>fluent-hc</artifactId>
+			<version>4.5.5</version>
 		</dependency>
 	</dependencies>
 
