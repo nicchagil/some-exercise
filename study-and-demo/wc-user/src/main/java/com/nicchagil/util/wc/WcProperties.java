@@ -1,4 +1,4 @@
-package com.nicchagil.properties;
+package com.nicchagil.util.wc;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

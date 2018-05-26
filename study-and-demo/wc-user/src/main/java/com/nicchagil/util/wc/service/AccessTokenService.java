@@ -9,8 +9,8 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import com.nicchagil.properties.WcProperties;
 import com.nicchagil.util.wc.WcCommonUtils;
+import com.nicchagil.util.wc.WcProperties;
 
 @Service
 public class AccessTokenService {
