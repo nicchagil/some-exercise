@@ -1,4 +1,4 @@
-package com.nicchagil.scheduledjob.standalone;
+package com.nicchagil.util.wc.test;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +16,9 @@ public class ScheduledJob {
 	@Autowired
 	private AccessTokenService accessTokenService;
 	
+	/**
+	 * 定时任务用于定期获取WC访问令牌
+	 */
 	@Scheduled(fixedDelay = 5000)
     public void fixTimeJob() {
         this.logger.info("定时获取WC访问令牌：{}", this.accessTokenService.getAccessToken());

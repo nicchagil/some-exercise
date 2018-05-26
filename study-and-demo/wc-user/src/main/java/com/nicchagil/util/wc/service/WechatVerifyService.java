@@ -13,7 +13,7 @@ import com.google.common.collect.Lists;
 import com.nicchagil.util.DictOrderUtils;
 import com.nicchagil.util.Sha1Utils;
 import com.nicchagil.util.wc.WcConstants;
-import com.nicchagil.vo.WecharVerifyVo;
+import com.nicchagil.util.wc.vo.WecharVerifyVo;
 
 @Service
 public class WechatVerifyService {

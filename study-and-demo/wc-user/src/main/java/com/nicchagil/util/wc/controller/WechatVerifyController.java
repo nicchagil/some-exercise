@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nicchagil.util.wc.service.WechatVerifyService;
-import com.nicchagil.vo.WecharVerifyVo;
+import com.nicchagil.util.wc.vo.WecharVerifyVo;
 
 @RestController
 @RequestMapping(value = "/wechat/verify")
