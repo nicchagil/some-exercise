@@ -1,12 +1,11 @@
 package com.nicchagil.util.excel.export;
 
 import java.util.List;
-import java.util.Map;
 
 public class ExcelExportConfigVo {
 
 	/** 需要填充的零散的单元格 **/
-	private Map<CellIndex, String> scatteredCellList;
+	private List<CellConfigVo> scatteredCellList;
 
 	/** 批量导出的数据的单元格坐标 **/
 	private CellIndex batchDataListStartCellIndex;
@@ -17,11 +16,11 @@ public class ExcelExportConfigVo {
 	/** 批量导出的数据的键 **/
 	private String[] batchDataColumnKey;
 
-	public Map<CellIndex, String> getScatteredCellList() {
+	public List<CellConfigVo> getScatteredCellList() {
 		return scatteredCellList;
 	}
 
-	public void setScatteredCellList(Map<CellIndex, String> scatteredCellList) {
+	public void setScatteredCellList(List<CellConfigVo> scatteredCellList) {
 		this.scatteredCellList = scatteredCellList;
 	}
 
@@ -76,6 +75,24 @@ public class ExcelExportConfigVo {
 
 		public void setColumn(Integer column) {
 			this.column = column;
+		}
+
+	}
+
+	public static class CellConfigVo extends CellIndex {
+		private Object value;
+
+		public CellConfigVo(Integer row, Integer column, Object value) {
+			super(row, column);
+			this.value = value;
+		}
+
+		public Object getValue() {
+			return value;
+		}
+
+		public void setValue(Object value) {
+			this.value = value;
 		}
 
 	}

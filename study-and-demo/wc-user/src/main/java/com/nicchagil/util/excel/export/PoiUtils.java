@@ -16,6 +16,7 @@ import org.apache.shiro.util.Assert;
 import org.apache.shiro.util.CollectionUtils;
 
 import com.nicchagil.util.classpathfile.ClassPathFileUtils;
+import com.nicchagil.util.excel.export.ExcelExportConfigVo.CellConfigVo;
 import com.nicchagil.util.excel.export.ExcelExportConfigVo.CellIndex;
 import com.nicchagil.util.reflect.ReflectUtils;
 
@@ -61,15 +62,15 @@ public class PoiUtils {
 	/**
 	 * 将数据写入零散的单元格
 	 */
-	public static void writeScatteredCell(Sheet sheet, Map<CellIndex, String> scatteredCellMap) {
+	public static void writeScatteredCell(Sheet sheet, List<CellConfigVo> cellConfigVoList) {
 		Assert.notNull(sheet, "Sheet不可为空");
 		
-		if (scatteredCellMap == null || scatteredCellMap.size() == 0) {
+		if (CollectionUtils.isEmpty(cellConfigVoList)) {
 			return;
 		}
 		
-		scatteredCellMap.forEach((k, v) -> {
-			PoiUtils.writeCell(sheet, k, v);
+		cellConfigVoList.forEach(cellConfigVo -> {
+			PoiUtils.writeCell(sheet, cellConfigVo);
 		});
 	}
 	
@@ -97,7 +98,7 @@ public class PoiUtils {
 				String key = columnKeys[j];
 				
 				Object value = PoiUtils.getValueFromObject(obj, key);
-				PoiUtils.writeCell(sheet, new CellIndex(rowIndex + i, columnIndex + j), value);
+				PoiUtils.writeCell(sheet, new CellConfigVo(rowIndex + i, columnIndex + j, value));
 			}
 		}
 	}
@@ -121,15 +122,17 @@ public class PoiUtils {
 	/**
 	 * 根据单元格坐标写入值
 	 */
-	public static void writeCell(Sheet sheet, CellIndex cellIndex, Object value) {
+	public static void writeCell(Sheet sheet, CellConfigVo cellConfigVo) {
 		Assert.notNull(sheet, "Sheet不可为空");
 		
-		Assert.notNull(cellIndex, "单元格坐标不可为空");
-		Assert.notNull(cellIndex.getRow(), "单元格坐标的行不可为空");
-		Assert.notNull(cellIndex.getColumn(), "单元格坐标的列不可为空");
+		Assert.notNull(cellConfigVo, "单元格配置对象不可为空");
+		Assert.notNull(cellConfigVo.getRow(), "单元格配置对象的行不可为空");
+		Assert.notNull(cellConfigVo.getColumn(), "单元格配置对象的列不可为空");
+		Assert.notNull(cellConfigVo.getValue(), "单元格配置对象的值不可为空");
 		
-		Integer rowIndex = cellIndex.getRow();
-		Integer columnIndex = cellIndex.getColumn();
+		Integer rowIndex = cellConfigVo.getRow();
+		Integer columnIndex = cellConfigVo.getColumn();
+		Object value = cellConfigVo.getValue();
 		
 		/* 获取行 */
 		Row row = PoiUtils.getRowOrCreateRow(sheet, rowIndex);

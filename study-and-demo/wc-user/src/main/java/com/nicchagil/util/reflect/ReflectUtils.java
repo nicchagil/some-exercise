@@ -32,7 +32,7 @@ public class ReflectUtils {
 	}
 	
 	/**
-	 * 获取属性值
+	 * 获取属性值（JDK9以后有可能不能用此方法获取属性值）
 	 */
 	public static Object getFieldValue(Object obj, String fieldName) {
 		Assert.notNull(obj, "反射获取属性值，入参对象不可为空");

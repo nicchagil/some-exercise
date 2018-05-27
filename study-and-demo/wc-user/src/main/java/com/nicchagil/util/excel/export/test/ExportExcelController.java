@@ -1,8 +1,6 @@
 package com.nicchagil.util.excel.export.test;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.common.collect.Lists;
 import com.nicchagil.util.excel.export.ExcelExportConfigVo;
+import com.nicchagil.util.excel.export.ExcelExportConfigVo.CellConfigVo;
 import com.nicchagil.util.excel.export.ExcelExportConfigVo.CellIndex;
 import com.nicchagil.util.excel.export.PoiUtils;
 import com.nicchagil.util.excel.export.WorkBookExportUtils;
@@ -32,10 +31,7 @@ public class ExportExcelController {
     	configVo.setBatchDataListStartCellIndex(new CellIndex(2, 0));
     	
     	/* 设置导出的零散的单元格数据 */
-    	Map<CellIndex, String> scatteredCellMap = new HashMap<CellIndex, String>();
-    	scatteredCellMap.put(new CellIndex(0, 1), "开发部");
-    	scatteredCellMap.put(new CellIndex(0, 3), "2018-01-01");
-    	configVo.setScatteredCellList(scatteredCellMap);
+    	configVo.setScatteredCellList(Lists.newArrayList(new CellConfigVo(0, 1, "开发部"), new CellConfigVo(0, 3, "2018-01-01")));
     	
     	/* 加载模板 */
     	Workbook workbook = PoiUtils.loadWorkbookFromClasspath("/com/nicchagil/util/excel/export/TEMPLATE.XLS");
