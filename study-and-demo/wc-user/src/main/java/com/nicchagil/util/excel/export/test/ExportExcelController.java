@@ -1,6 +1,8 @@
 package com.nicchagil.util.excel.export.test;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -23,14 +25,24 @@ public class ExportExcelController {
     public String test(HttpServletResponse response, String username, String password) {
     	List<User> list = Lists.newArrayList(new User(1, "Nick Huang"), new User(2, "Hello Kitty"));
     	
+    	/* 设置导出的批量数据 */
     	ExcelExportConfigVo configVo = new ExcelExportConfigVo();
-    	configVo.setBatchDataColumnKey(new String[] {"id", "name"});
+    	configVo.setBatchDataColumnKey(new String[] {"id", "name", "男", "18"});
     	configVo.setBatchDataList(list);
-    	configVo.setBatchDataListStartCellIndex(new CellIndex(3, 0));
+    	configVo.setBatchDataListStartCellIndex(new CellIndex(2, 0));
     	
+    	/* 设置导出的零散的单元格数据 */
+    	Map<CellIndex, String> scatteredCellMap = new HashMap<CellIndex, String>();
+    	scatteredCellMap.put(new CellIndex(0, 1), "开发部");
+    	scatteredCellMap.put(new CellIndex(0, 3), "2018-01-01");
+    	configVo.setScatteredCellList(scatteredCellMap);
+    	
+    	/* 加载模板 */
     	Workbook workbook = PoiUtils.loadWorkbookFromClasspath("/com/nicchagil/util/excel/export/TEMPLATE.XLS");
+    	/* 将设置的数据设置进Workbook */
     	PoiUtils.writeWorkbookByConfigVo(workbook, configVo);
     	
+    	/* 下载到浏览器 */
     	WorkBookExportUtils.exportForBrowserByTraditionalWay(workbook, "用户信息表.xls", response);
         return "成功";
     }
