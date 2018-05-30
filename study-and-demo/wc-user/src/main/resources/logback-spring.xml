@@ -1,0 +1,66 @@
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <property name="Application_Name" value="wc-user" /> <!-- 公用属性 -->
+    <contextName>${Application_Name}</contextName> <!-- 上下文名称 -->
+
+    <!-- 控制台输出 -->
+    <appender name="CONSOLE_OUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg %n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!-- 滚动日志文件输出 -->
+    <appender name="ROLLING_FILE"
+        class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>D:/logs/${Application_Name}.%d{yyyy-MM-dd}.log
+            </fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg %n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!-- 滚动日志文件输出（仅警告、错误日志） -->
+    <appender name="ROLLING_ERROR_FILE"
+        class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">  
+            <level>WARN</level>  
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>D:/logs/${Application_Name}.error.%d{yyyy-MM-dd}.log
+            </fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg %n
+            </pattern>
+        </encoder>
+    </appender>
+    
+    <!-- 专门为com.nicchagil包下定义的输出 -->
+    <appender name="SPECIFIED_FILE_OUT" class="ch.qos.logback.core.FileAppender">
+        <file>D:/logs/${Application_Name}.specified.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!-- 根logger的定义 -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE_OUT" />
+        <appender-ref ref="ROLLING_FILE" />
+        <appender-ref ref="ROLLING_ERROR_FILE" />
+    </root>
+
+    <!-- 为com.nicchagil包专属logger的定义 -->
+    <logger name="com.nicchagil.util.log.test" level="DEBUG">
+        <appender-ref ref="SPECIFIED_FILE_OUT" />
+    </logger>
+    
+</configuration>
