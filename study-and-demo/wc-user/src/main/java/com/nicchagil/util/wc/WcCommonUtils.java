@@ -1,8 +1,14 @@
 package com.nicchagil.util.wc;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 
+import javax.servlet.ServletInputStream;
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.http.client.fluent.Request;
+import org.apache.poi.util.IOUtils;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,6 +55,37 @@ public class WcCommonUtils {
 
 	public static void main(String[] args) throws Exception {
 		WcCommonUtils.getAccessToken(WcConstants.APP_ID, WcConstants.APP_SECRET);
+	}
+	
+	/**
+	 * 从输入流中获取XML
+	 */
+	public static String getXmlFromRequest(HttpServletRequest request) {
+		ServletInputStream sis = null;
+		try {
+			sis = request.getInputStream();
+			byte[] bytes = IOUtils.toByteArray(sis);
+			
+			String xml = new String(bytes, "UTF-8");
+			logger.info("xml : {}", xml);
+			return xml;
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		} finally {
+			org.apache.tomcat.util.http.fileupload.IOUtils.closeQuietly(sis);
+		}
+	}
+	
+	@Test
+	public void toByteArrayTest() {
+		try {
+			byte[] bytes = IOUtils.toByteArray(new FileInputStream("d:/wc_workspace/xml.txt"));
+			
+			String xml = new String(bytes, "UTF-8"); // 在Windows中已将输入流的txt文件另存为UTF-8格式
+			logger.info("xml : {}", xml);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 }
