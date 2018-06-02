@@ -26,6 +26,17 @@ public class XmlUtils {
 		return null;
 	}
 	
+	/**
+	 * Bean转换为XML
+	 */
+	public static String toXml(XStream xstream, Object obj) {
+		if (obj == null) {
+			return null;
+		}
+		
+		return xstream.toXML(obj);
+	}
+	
 	@Test
 	public void toXml() {
 		User user = new User();

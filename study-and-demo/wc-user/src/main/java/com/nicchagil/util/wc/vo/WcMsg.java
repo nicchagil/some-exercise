@@ -9,7 +9,7 @@ public class WcMsg {
 	private String FromUserName;
 	
 	/** 消息创建时间 （整型） **/
-	private Integer CreateTime;
+	private Long CreateTime;
 	
 	/** 消息类型 **/
 	private String MsgType;
@@ -36,11 +36,11 @@ public class WcMsg {
 		FromUserName = fromUserName;
 	}
 
-	public Integer getCreateTime() {
+	public Long getCreateTime() {
 		return CreateTime;
 	}
 
-	public void setCreateTime(Integer createTime) {
+	public void setCreateTime(Long createTime) {
 		CreateTime = createTime;
 	}
 

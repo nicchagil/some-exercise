@@ -1,11 +1,14 @@
 package com.nicchagil.util.wc.service;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.nicchagil.util.wc.MsgType;
 import com.nicchagil.util.wc.WcCommonUtils;
 import com.nicchagil.util.wc.vo.WcMsg;
 import com.nicchagil.util.xml.XmlUtils;
@@ -20,14 +23,27 @@ public class WechatMsgService {
 	 * 处理微信发送的信息
 	 */
 	public String receiveAndHandleMsg(HttpServletRequest request) {
+		/* 接收到消息 */
 		String xml = WcCommonUtils.getXmlFromRequest(request);
 		this.logger.info("receive xml : {}", xml);
 		
-		WcMsg wcMsg = this.xmlToWcMsg(xml);
-		this.logger.info("wcMsg : {}", wcMsg);
+		WcMsg receivedMsg = this.xmlToWcMsg(xml);
+		this.logger.info("receivedMsg : {}", receivedMsg);
 		
-		// TODO 处理消息
-		return "OK";
+		/* 响应消息 */
+		WcMsg sendMsg = new WcMsg();
+		sendMsg.setFromUserName(receivedMsg.getToUserName());
+		sendMsg.setToUserName(receivedMsg.getFromUserName());
+		sendMsg.setCreateTime(new Date().getTime());
+		sendMsg.setMsgType(MsgType.TEXT.getCode());
+		sendMsg.setContent("你的消息已收到");
+		
+		XStream xstream = new XStream();
+		xstream.alias("xml", WcMsg.class);
+		
+		String responseXml = xstream.toXML(sendMsg);
+		this.logger.info("response xml : {}", responseXml);
+		return responseXml;
 	}
 	
 	/**
