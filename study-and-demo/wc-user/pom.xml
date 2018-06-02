@@ -91,18 +91,25 @@
 			<version>3.7</version>
 		</dependency>
 
-		<!-- Freemarker -->
+		<!-- Freemarker，模板语言 -->
 		<dependency>
 			<groupId>org.freemarker</groupId>
 			<artifactId>freemarker</artifactId>
 			<version>2.3.23</version>
 		</dependency>
 
-		<!-- Xstream -->
+		<!-- Xstream，主要解析、转换XML用 -->
 		<dependency>
 			<groupId>xstream</groupId>
 			<artifactId>xstream</artifactId>
 			<version>1.2.2</version>
+		</dependency>
+
+		<!-- Junit，主要单元测试用 -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
 		</dependency>
 	</dependencies>
 
