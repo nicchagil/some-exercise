@@ -100,9 +100,9 @@
 
 		<!-- Xstream，主要解析、转换XML用 -->
 		<dependency>
-			<groupId>xstream</groupId>
+			<groupId>com.thoughtworks.xstream</groupId>
 			<artifactId>xstream</artifactId>
-			<version>1.2.2</version>
+			<version>1.4.9</version>
 		</dependency>
 
 		<!-- Junit，主要单元测试用 -->
