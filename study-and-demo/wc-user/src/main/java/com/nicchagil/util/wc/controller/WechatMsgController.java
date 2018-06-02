@@ -16,7 +16,7 @@ import com.nicchagil.util.wc.vo.WecharVerifyVo;
 
 @RestController
 @RequestMapping(value = "/wechat/handle")
-public class WechatVerifyController {
+public class WechatMsgController {
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
