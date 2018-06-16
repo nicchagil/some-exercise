@@ -1,4 +1,4 @@
-package com.nicchagil.util.excel.export;
+package com.nicchagil.util.excel;
 
 import java.io.IOException;
 import java.util.List;
@@ -16,6 +16,7 @@ import org.apache.shiro.util.Assert;
 import org.apache.shiro.util.CollectionUtils;
 
 import com.nicchagil.util.classpathfile.ClassPathFileUtils;
+import com.nicchagil.util.excel.export.ExcelExportConfigVo;
 import com.nicchagil.util.excel.export.ExcelExportConfigVo.CellConfigVo;
 import com.nicchagil.util.excel.export.ExcelExportConfigVo.CellIndex;
 import com.nicchagil.util.reflect.ReflectUtils;
