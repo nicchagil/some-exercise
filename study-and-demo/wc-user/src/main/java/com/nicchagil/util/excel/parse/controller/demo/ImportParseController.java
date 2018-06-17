@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.nicchagil.util.Map2BeanUtils;
 import com.nicchagil.util.excel.parse.ExcelParseConfigVo;
 import com.nicchagil.util.excel.parse.ExcelParseConfigVo.CellIndex;
 import com.nicchagil.util.excel.parse.WorkBookParseUtils;
@@ -43,6 +44,9 @@ public class ImportParseController {
 			List<Map<String, String>> dataList = WorkBookParseUtils.getBatchData(wb, configVo);
 			logger.info("Upload dataList : {}", dataList);
 			
+			List<User> userList = Map2BeanUtils.mapList2BeanList(User.class, dataList);
+			logger.info("Upload userList : {}", userList);
+			
 		} catch (Exception e) {
 			throw new RuntimeException("读取文件异常", e);
 		}
@@ -51,11 +55,9 @@ public class ImportParseController {
 	public static class User {
 		private Integer id;
 		private String name;
-		public User(Integer id, String name) {
-			super();
-			this.id = id;
-			this.name = name;
-		}
+		private String sex;
+		private String birthday;
+		
 		public Integer getId() {
 			return id;
 		}
@@ -68,7 +70,22 @@ public class ImportParseController {
 		public void setName(String name) {
 			this.name = name;
 		}
-		
+		public String getSex() {
+			return sex;
+		}
+		public void setSex(String sex) {
+			this.sex = sex;
+		}
+		public String getBirthday() {
+			return birthday;
+		}
+		public void setBirthday(String birthday) {
+			this.birthday = birthday;
+		}
+		@Override
+		public String toString() {
+			return "User [id=" + id + ", name=" + name + ", sex=" + sex + ", birthday=" + birthday + "]";
+		}
 	}
 
 }
