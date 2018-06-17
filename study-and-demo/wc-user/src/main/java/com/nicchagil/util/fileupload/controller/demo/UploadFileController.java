@@ -19,7 +19,7 @@ import com.nicchagil.util.fileupload.MultipartFileAssert;
 @RequestMapping("/demo")
 public class UploadFileController {
 	
-	private Logger logger = LoggerFactory.getLogger(this.getClass());	
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@PostMapping("/fileUpload")
     public void fileUpload(@RequestParam("file") MultipartFile multipartFile) {
