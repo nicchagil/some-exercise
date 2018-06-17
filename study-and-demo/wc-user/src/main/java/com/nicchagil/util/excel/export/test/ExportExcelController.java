@@ -36,7 +36,7 @@ public class ExportExcelController {
     	/* 加载模板 */
     	Workbook workbook = PoiUtils.loadWorkbookFromClasspath("/com/nicchagil/util/excel/export/TEMPLATE.XLS");
     	/* 将设置的数据设置进Workbook */
-    	PoiUtils.writeWorkbookByConfigVo(workbook, configVo);
+    	WorkBookExportUtils.writeWorkbookByConfigVo(workbook, configVo);
     	
     	/* 下载到浏览器 */
     	WorkBookExportUtils.exportForBrowserByTraditionalWay(workbook, "用户信息表.xls", response);

@@ -6,9 +6,35 @@ import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.shiro.util.Assert;
+
+import com.nicchagil.util.excel.PoiUtils;
 
 public class WorkBookExportUtils {
+	
+	/**
+	 * 根据配置对象写数据进入Workbook（默认第1个Sheet）
+	 */
+	public static Workbook writeWorkbookByConfigVo(Workbook wb, ExcelExportConfigVo configVo) {
+		return WorkBookExportUtils.writeWorkbookByConfigVo(wb, PoiUtils.DEFAULT_SHEET_INDEX, configVo);
+	}
+	
+	/**
+	 * 根据配置对象写数据进入Workbook
+	 */
+	public static Workbook writeWorkbookByConfigVo(Workbook wb, Integer sheetIndex, ExcelExportConfigVo configVo) {
+		Assert.notNull(configVo, "Excel写数配置对象为空");
+		
+		Sheet sheet = wb.getSheetAt(sheetIndex);
+		// 将数据写入零散的单元格
+		PoiUtils.writeScatteredCell(sheet, configVo.getScatteredCellList());
+		// 写入批量数据
+		PoiUtils.writeBatchData(sheet, configVo.getBatchDataListStartCellIndex(), configVo.getBatchDataList(), configVo.getBatchDataColumnKey());
+		
+		return wb;
+	}
 	
 	/**
      * 将Excel以输出流形式导出到浏览器

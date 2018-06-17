@@ -16,7 +16,6 @@ import org.apache.shiro.util.Assert;
 import org.apache.shiro.util.CollectionUtils;
 
 import com.nicchagil.util.classpathfile.ClassPathFileUtils;
-import com.nicchagil.util.excel.export.ExcelExportConfigVo;
 import com.nicchagil.util.excel.export.ExcelExportConfigVo.CellConfigVo;
 import com.nicchagil.util.excel.export.ExcelExportConfigVo.CellIndex;
 import com.nicchagil.util.reflect.ReflectUtils;
@@ -36,28 +35,6 @@ public class PoiUtils {
 		} catch (EncryptedDocumentException | InvalidFormatException | IOException e) {
 			throw new RuntimeException(e);
 		}
-	}
-	
-	/**
-	 * 根据配置对象写数据进入Workbook（默认第1个Sheet）
-	 */
-	public static Workbook writeWorkbookByConfigVo(Workbook wb, ExcelExportConfigVo configVo) {
-		return PoiUtils.writeWorkbookByConfigVo(wb, PoiUtils.DEFAULT_SHEET_INDEX, configVo);
-	}
-	
-	/**
-	 * 根据配置对象写数据进入Workbook
-	 */
-	public static Workbook writeWorkbookByConfigVo(Workbook wb, Integer sheetIndex, ExcelExportConfigVo configVo) {
-		Assert.notNull(configVo, "Excel写数配置对象为空");
-		
-		Sheet sheet = wb.getSheetAt(sheetIndex);
-		// 将数据写入零散的单元格
-		PoiUtils.writeScatteredCell(sheet, configVo.getScatteredCellList());
-		// 写入批量数据
-		PoiUtils.writeBatchData(sheet, configVo.getBatchDataListStartCellIndex(), configVo.getBatchDataList(), configVo.getBatchDataColumnKey());
-		
-		return wb;
 	}
 	
 	/**
