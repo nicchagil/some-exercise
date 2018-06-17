@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.nicchagil.util.Map2BeanUtils;
+import com.nicchagil.util.excel.configvo.CellIndex;
 import com.nicchagil.util.excel.parse.ExcelParseConfigVo;
-import com.nicchagil.util.excel.parse.ExcelParseConfigVo.CellIndex;
 import com.nicchagil.util.excel.parse.WorkBookParseUtils;
 import com.nicchagil.util.fileupload.MultipartFileAssert;
 

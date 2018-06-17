@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.common.collect.Lists;
 import com.nicchagil.util.excel.PoiUtils;
+import com.nicchagil.util.excel.configvo.CellConfigVo;
+import com.nicchagil.util.excel.configvo.CellIndex;
 import com.nicchagil.util.excel.export.ExcelExportConfigVo;
-import com.nicchagil.util.excel.export.ExcelExportConfigVo.CellConfigVo;
-import com.nicchagil.util.excel.export.ExcelExportConfigVo.CellIndex;
 import com.nicchagil.util.excel.export.WorkBookExportUtils;
 
 @RestController

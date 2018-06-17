@@ -16,8 +16,8 @@ import org.apache.shiro.util.Assert;
 import org.apache.shiro.util.CollectionUtils;
 
 import com.nicchagil.util.classpathfile.ClassPathFileUtils;
-import com.nicchagil.util.excel.export.ExcelExportConfigVo.CellConfigVo;
-import com.nicchagil.util.excel.export.ExcelExportConfigVo.CellIndex;
+import com.nicchagil.util.excel.configvo.CellConfigVo;
+import com.nicchagil.util.excel.configvo.CellIndex;
 import com.nicchagil.util.reflect.ReflectUtils;
 
 public class PoiUtils {
