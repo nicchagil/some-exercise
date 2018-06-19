@@ -1,9 +1,12 @@
 package com.nicchagil.util.excel.parse.controller.demo;
 
 import java.io.InputStream;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.beanutils.ConvertUtilsBean;
+import org.apache.commons.beanutils.locale.converters.IntegerLocaleConverter;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.slf4j.Logger;
@@ -44,7 +47,13 @@ public class ImportParseController {
 			List<Map<String, String>> dataList = WorkBookParseUtils.getBatchData(wb, configVo);
 			logger.info("Upload dataList : {}", dataList);
 			
-			List<User> userList = Map2BeanUtils.mapList2BeanList(User.class, dataList);
+			/* Date转换器 */
+			ConvertUtilsBean convertUtilsBean = new ConvertUtilsBean();
+			convertUtilsBean.register(new DateConverter(), Date.class);
+			convertUtilsBean.register(new IntegerLocaleConverter(), Integer.class); // 处理NULL的情况
+			
+			/* 转换为指定Bean的集合 */
+			List<User> userList = Map2BeanUtils.mapList2BeanListByConverters(User.class, dataList, convertUtilsBean);
 			logger.info("Upload userList : {}", userList);
 			
 		} catch (Exception e) {
@@ -56,7 +65,7 @@ public class ImportParseController {
 		private Integer id;
 		private String name;
 		private String sex;
-		private String birthday;
+		private Date birthday;
 		
 		public Integer getId() {
 			return id;
@@ -76,10 +85,10 @@ public class ImportParseController {
 		public void setSex(String sex) {
 			this.sex = sex;
 		}
-		public String getBirthday() {
+		public Date getBirthday() {
 			return birthday;
 		}
-		public void setBirthday(String birthday) {
+		public void setBirthday(Date birthday) {
 			this.birthday = birthday;
 		}
 		@Override

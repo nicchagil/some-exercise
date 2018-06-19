@@ -96,14 +96,14 @@ public class WorkBookParseUtils {
 	 */
 	public static String getCellValueOnString(Cell c) {
 		if (c == null) {
-			return StringUtils.EMPTY;
+			return null;
 		}
 		
 		CellType cellType = c.getCellTypeEnum();
 		
 		String value = null;
 		if (cellType == CellType._NONE) {
-			value = StringUtils.EMPTY;
+			value = null;
 		} else if (cellType == CellType.NUMERIC) {
 			value = String.valueOf(c.getNumericCellValue());
 		} else if (cellType == CellType.STRING) {
@@ -111,11 +111,16 @@ public class WorkBookParseUtils {
 		} else if (cellType == CellType.FORMULA) {
 			value = c.getCellFormula();
 		} else if (cellType == CellType.BLANK) {
-			value = StringUtils.EMPTY;
+			value = null;
 		} else if (cellType == CellType.BOOLEAN) {
 			value = String.valueOf(c.getBooleanCellValue());
 		} else if (cellType == CellType.ERROR) {
 			value = String.valueOf(c.getErrorCellValue());
+		}
+		
+		/* 将返回空字符串的情况返回NULL，是为了易于处理将String转换为其它类型的情况（比如Integer），如为空字符串，部分转换为其它类型可能有问题，因为不一定都有作转换前的格式校验 */
+		if (StringUtils.isBlank(value)) {
+			return null;
 		}
 		
 		logger.info("{} - {}", cellType, value);
