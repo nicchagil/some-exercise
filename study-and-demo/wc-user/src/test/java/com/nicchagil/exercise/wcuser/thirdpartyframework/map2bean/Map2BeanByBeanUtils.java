@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.BeanUtilsBean;
+import org.apache.commons.beanutils.ConvertUtilsBean;
+import org.apache.commons.beanutils.locale.converters.IntegerLocaleConverter;
 import org.junit.Test;
 
 public class Map2BeanByBeanUtils {
@@ -50,6 +53,42 @@ public class Map2BeanByBeanUtils {
 		User user = new User();
 		try {
 			BeanUtils.populate(user, map);
+			System.out.println("user : " + user);
+		} catch (IllegalAccessException | InvocationTargetException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void test4x1() {
+		Map<String, Object> map = new HashMap<>();
+		map.put("id", "123.0");
+		map.put("name", "Nick");
+		
+		User user = new User();
+		try {
+			BeanUtils.populate(user, map); // WRONG : User [id=0, name=Nick, birthday=null]
+			
+			System.out.println("user : " + user);
+		} catch (IllegalAccessException | InvocationTargetException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void test4x2() {
+		Map<String, Object> map = new HashMap<>();
+		map.put("id", "123.0");
+		map.put("name", "Nick");
+
+		User user = new User();
+		try {
+			ConvertUtilsBean convertUtilsBean = new ConvertUtilsBean();
+			convertUtilsBean.register(new IntegerLocaleConverter(), Integer.class);
+			
+			BeanUtilsBean beanUtilsBean = new BeanUtilsBean(convertUtilsBean);
+			beanUtilsBean.populate(user, map);
+			
 			System.out.println("user : " + user);
 		} catch (IllegalAccessException | InvocationTargetException e) {
 			e.printStackTrace();
