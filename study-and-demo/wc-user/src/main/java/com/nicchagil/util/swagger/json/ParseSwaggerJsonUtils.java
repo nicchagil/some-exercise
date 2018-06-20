@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,7 +45,12 @@ public class ParseSwaggerJsonUtils {
 			String url = entry.getKey();
 			List<String> methodList = ParseSwaggerJsonUtils.getMethod(entry.getValue());
 			
-			apiVoList.add(new ApiVo(url, methodList));
+			if (CollectionUtils.isNotEmpty(methodList)) {
+				for (String method : methodList) {
+					apiVoList.add(new ApiVo(url, method));
+				}
+			}
+			
 			logger.info("URL : {}{}", entry.getKey(), methodList);
 		}
 		
@@ -72,33 +78,27 @@ public class ParseSwaggerJsonUtils {
 	
 	public static class ApiVo {
 		private String url;
-		private List<String> httpRequestMethodList;
-
-		public ApiVo(String url, List<String> httpRequestMethodList) {
-			super();
-			this.url = url;
-			this.httpRequestMethodList = httpRequestMethodList;
-		}
-
+		private String httpRequestMethod;
 		public String getUrl() {
 			return url;
 		}
-
 		public void setUrl(String url) {
 			this.url = url;
 		}
-
-		public List<String> getHttpRequestMethodList() {
-			return httpRequestMethodList;
+		public String getHttpRequestMethod() {
+			return httpRequestMethod;
 		}
-
-		public void setHttpRequestMethodList(List<String> httpRequestMethodList) {
-			this.httpRequestMethodList = httpRequestMethodList;
+		public void setHttpRequestMethod(String httpRequestMethod) {
+			this.httpRequestMethod = httpRequestMethod;
 		}
-
+		public ApiVo(String url, String httpRequestMethod) {
+			super();
+			this.url = url;
+			this.httpRequestMethod = httpRequestMethod;
+		}
 		@Override
 		public String toString() {
-			return "ApiVo [url=" + url + ", httpRequestMethodList=" + httpRequestMethodList + "]";
+			return "ApiVo [url=" + url + ", httpRequestMethod=" + httpRequestMethod + "]";
 		}
 	}
 
