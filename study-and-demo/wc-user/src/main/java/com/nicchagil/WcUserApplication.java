@@ -7,7 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+import com.nicchagil.designpattern.strategy.spring.UseStrategyService;
+import com.nicchagil.designpattern.strategy.spring.UseStrategyService.SomethingEnum;
 import com.nicchagil.util.log.test.LogPrintTest;
+import com.nicchagil.util.spring.ApplicationContextUtils;
 
 @SpringBootApplication
 @EnableScheduling
@@ -23,5 +26,9 @@ public class WcUserApplication {
 		logger.info("启动完毕...");
 		logger.error("启动完毕...（测试错误日志打印）");
 		LogPrintTest.printLogInSpecialPackage();
+		
+		/* 测试策略模式 */
+		UseStrategyService useStrategyService = ApplicationContextUtils.getBean(UseStrategyService.class);
+		useStrategyService.useStrategyPatternDemo(SomethingEnum.BALL);
 	}
 }
