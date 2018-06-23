@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"> 
+	<title>国际化</title>
+	<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<script type="text/javascript">
+
+	$(document).ready(function() {
+		// 空
+	});
+
+	function getCurrentLocale() {
+		$.ajax({
+			url : "/i18n/getLocale",
+			contentType : "application/x-www-form-urlencoded",
+			success : function(data) {
+				alert(data);
+			}
+		});
+	}
+
+	function getSupportLocaleList() {
+		$.ajax({
+			url : "/i18n/getSupportLocaleList",
+			contentType : "application/x-www-form-urlencoded",
+			dataType : "json",
+			success : function(data) {
+				alert(data);
+			}
+		});
+	}
+	
+	function switchLanguage() {
+		$.ajax({
+			url : "/i18n/switchLanguage?language=" + $('#langId').val(),
+			contentType : "application/x-www-form-urlencoded",
+			dataType : "json",
+			success : function(data) {
+				alert(data);
+			}
+		});
+	}
+	
+	function getI18nMsg() {
+		$.ajax({
+			url : "/i18n/getI18nMsg?code=" + $('#codeId').val(),
+			contentType : "application/x-www-form-urlencoded",
+			dataType : "string",
+			success : function(data) {
+				alert(data);
+			}
+		});
+	}
+</script>
+<body>
+
+<a href="javascript:getCurrentLocale()">点击查询当前语言</a>
+<hr />
+
+<a href="javascript:getSupportLocaleList()()">点击查询当前支持的语言</a>
+<hr />
+
+语言切换：
+<select id="langId">
+  <option value ="zh">zh</option>
+  <option value ="en">en</option>
+</select>
+<button type="button" onclick="switchLanguage()">切换</button>
+<hr />
+
+查询国际化的提示：
+<input type="text" id="codeId" />
+<button type="button" onclick="getI18nMsg()">获取</button>
+<hr />
+
+快速链接：<br/>
+<a href="./console.html">返回Console主页</a>
+
+</body>
+</html>
