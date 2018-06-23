@@ -25,7 +25,7 @@ public class I18nService {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	/** 支持的系统语言 **/
-	public static Locale[] SUPPORT_LOCALE_ARRAY = {Locale.SIMPLIFIED_CHINESE, Locale.ENGLISH};
+	public static Locale[] SUPPORT_LOCALE_ARRAY = {Locale.SIMPLIFIED_CHINESE, Locale.US};
 	
 	/**
 	 * 获取支持的系统语言
