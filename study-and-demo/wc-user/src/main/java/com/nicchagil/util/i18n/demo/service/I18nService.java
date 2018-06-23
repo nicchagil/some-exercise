@@ -18,6 +18,7 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.nicchagil.util.exception.BusinessException;
+import com.nicchagil.util.exception.ExceptionCodeEnum;
 
 @Service
 public class I18nService {
@@ -48,7 +49,7 @@ public class I18nService {
 		Locale.SIMPLIFIED_CHINESE.getLanguage();
 		
 		if (StringUtils.isBlank(language)) {
-			throw new BusinessException().setMsg("请输入参数");
+			throw new BusinessException().setExceptionCodeEnum(ExceptionCodeEnum.MSG_00001);
 		}
 		
 		LocaleResolver localeResolver = RequestContextUtils.getLocaleResolver(request);

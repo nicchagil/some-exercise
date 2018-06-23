@@ -7,15 +7,12 @@ import org.springframework.context.i18n.LocaleContextHolder;
 
 import com.nicchagil.util.spring.ApplicationContextUtils;
 
-/**
- * 继承运行时异常的业务异常
- */
-public class BusinessException extends RuntimeException {
+public class GlobalHttpReturn {
 	
-	private static final long serialVersionUID = 1L;
-
+	/** 代码 **/
 	private String code;
 	
+	/** 提示信息 **/
 	private String msg;
 
 	public String getCode() {
@@ -25,11 +22,11 @@ public class BusinessException extends RuntimeException {
 	public String getMsg() {
 		return msg;
 	}
-
+	
 	/**
 	 * 通过指定枚举设置代码和提示信息
 	 */
-	public BusinessException setExceptionCodeEnum(ExceptionCodeEnum exceptionCodeEnum) {
+	public GlobalHttpReturn setExceptionCodeEnum(ExceptionCodeEnum exceptionCodeEnum) {
 		this.code = exceptionCodeEnum.name();
 		
 		/* 设置系统语言的提示信息 */
@@ -41,5 +38,5 @@ public class BusinessException extends RuntimeException {
 		
 		return this;
 	}
-	
+
 }

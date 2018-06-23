@@ -53,6 +53,17 @@
 			}
 		});
 	}
+	
+	function exceptionMock() {
+		$.ajax({
+			url : "/exception/exceptionMock?exceptionClassName=" + $('#exceptionClassNameId').val(),
+			contentType : "application/x-www-form-urlencoded",
+			dataType : "string",
+			success : function(data) {
+				alert(data);
+			}
+		});
+	}
 </script>
 <body>
 
@@ -73,6 +84,14 @@
 查询国际化的提示：
 <input type="text" id="codeId" />
 <button type="button" onclick="getI18nMsg()">获取</button>
+<hr />
+
+模拟抛出指定异常：
+<select id="exceptionClassNameId">
+  <option value ="BusinessException">BusinessException</option>
+  <option value ="IllegalArgumentException">IllegalArgumentException</option>
+</select>
+<button type="button" onclick="exceptionMock()">抛出</button>
 <hr />
 
 快速链接：<br/>
