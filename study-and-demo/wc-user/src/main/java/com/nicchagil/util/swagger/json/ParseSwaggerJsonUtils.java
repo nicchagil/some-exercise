@@ -12,11 +12,10 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
-import com.nicchagil.exercise.wcuser.thirdpartyframework.jackson.swagger.json.ParseSwaggerJsonTest;
 
 public class ParseSwaggerJsonUtils {
 	
-	private static Logger logger = LoggerFactory.getLogger(ParseSwaggerJsonTest.class);
+	private static Logger logger = LoggerFactory.getLogger(ParseSwaggerJsonUtils.class);
 	
 	/**
 	 * 根据SWAGGER JSON获取请求URL和HTTP请求方法
