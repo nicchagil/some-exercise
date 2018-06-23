@@ -11,6 +11,12 @@ public class GlobalExceptionHandler {
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
+	@ExceptionHandler(value = BusinessException.class)  
+	@ResponseBody
+	public GlobalHttpReturn handle(BusinessException e) {
+		return new GlobalHttpReturn().setExceptionCodeEnum(e.getExceptionCodeEnum());
+	}
+	
 	@ExceptionHandler(value = Exception.class)  
     @ResponseBody
     public GlobalHttpReturn handle(Exception e) {

@@ -17,6 +17,8 @@ public class BusinessException extends RuntimeException {
 	private String code;
 	
 	private String msg;
+	
+	private ExceptionCodeEnum exceptionCodeEnum;
 
 	public String getCode() {
 		return code;
@@ -25,11 +27,16 @@ public class BusinessException extends RuntimeException {
 	public String getMsg() {
 		return msg;
 	}
-
+	
+	public ExceptionCodeEnum getExceptionCodeEnum() {
+		return exceptionCodeEnum;
+	}
+	
 	/**
 	 * 通过指定枚举设置代码和提示信息
 	 */
 	public BusinessException setExceptionCodeEnum(ExceptionCodeEnum exceptionCodeEnum) {
+		this.exceptionCodeEnum = exceptionCodeEnum;
 		this.code = exceptionCodeEnum.name();
 		
 		/* 设置系统语言的提示信息 */
@@ -40,6 +47,11 @@ public class BusinessException extends RuntimeException {
 		}
 		
 		return this;
+	}
+	
+	public BusinessException(ExceptionCodeEnum exceptionCodeEnum) {
+		super();
+		this.setExceptionCodeEnum(exceptionCodeEnum);
 	}
 	
 }

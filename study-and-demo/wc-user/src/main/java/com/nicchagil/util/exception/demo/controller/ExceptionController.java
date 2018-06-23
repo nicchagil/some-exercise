@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nicchagil.util.exception.BusinessException;
+import com.nicchagil.util.exception.ExceptionCodeEnum;
 
 @RestController
 @RequestMapping("/exception")
@@ -23,7 +24,7 @@ public class ExceptionController {
 	public void exceptionMock(HttpServletRequest request, String exceptionClassName) {
 		switch (exceptionClassName) {
 		case "BusinessException":
-			throw new BusinessException();
+			throw new BusinessException(ExceptionCodeEnum.MSG_00001);
 		case "IllegalArgumentException":
 			throw new IllegalArgumentException();
 		default:

@@ -49,7 +49,7 @@ public class I18nService {
 		Locale.SIMPLIFIED_CHINESE.getLanguage();
 		
 		if (StringUtils.isBlank(language)) {
-			throw new BusinessException().setExceptionCodeEnum(ExceptionCodeEnum.MSG_00001);
+			throw new BusinessException(ExceptionCodeEnum.MSG_00001);
 		}
 		
 		LocaleResolver localeResolver = RequestContextUtils.getLocaleResolver(request);
