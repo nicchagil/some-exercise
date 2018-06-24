@@ -3,11 +3,18 @@ package com.nicchagil.util;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nicchagil.util.enumeration.StatusEnum;
 
 public class JsonUtils {
+	
+	private Logger logger = LoggerFactory.getLogger(JsonUtils.class);
     
     /* 公共的ObjectMapper */
     private static ObjectMapper commonObjectMapper = new ObjectMapper();
@@ -40,6 +47,11 @@ public class JsonUtils {
             throw new RuntimeException("JSON->Bean转换失败：" + json);
         }
         return t;
+    }
+    
+    @Test
+    public void toJsonTestx1() {
+    	logger.info(JsonUtils.toJson(StatusEnum.ACTIVE));
     }
     
 }
