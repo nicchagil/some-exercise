@@ -1,4 +1,4 @@
-package com.nicchagil.exercise.wcuser.thirdpartyframework.map2bean;
+package com.nicchagil.test.thirdpartyframework.map2bean;
 
 import java.lang.reflect.InvocationTargetException;
 import java.text.ParseException;

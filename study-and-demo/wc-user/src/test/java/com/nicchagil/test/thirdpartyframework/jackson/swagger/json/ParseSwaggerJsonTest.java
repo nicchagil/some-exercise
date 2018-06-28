@@ -1,4 +1,4 @@
-package com.nicchagil.exercise.wcuser.thirdpartyframework.jackson.swagger.json;
+package com.nicchagil.test.thirdpartyframework.jackson.swagger.json;
 
 import java.io.IOException;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.nicchagil.util.partitionservice;
+package com.nicchagil.test.util.partitionservice;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Lists;
-import com.nicchagil.exercise.wcuser.BaseSpringBootTest;
+import com.nicchagil.test.BaseSpringBootTest;
 import com.nicchagil.util.partitionservice.demo.service.UserBatchQueryService;
 import com.nicchagil.util.partitionservice.demo.service.UserService.User;
 import com.nicchagil.util.spring.ApplicationContextUtils;

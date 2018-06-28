@@ -1,4 +1,4 @@
-package com.nicchagil.exercise.wcuser.thirdpartyframework.guava.listpartition;
+package com.nicchagil.test.thirdpartyframework.guava.listpartition;
 
 import java.util.List;
 
