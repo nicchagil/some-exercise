@@ -19,7 +19,7 @@ public class UserBatchQueryServiceTest extends BaseSpringBootTest {
 	@Test
 	public void getByIdListWithPartitionQueryTest() {
 		List<Integer> inputList = Lists.newArrayList();
-		for (int i = 1; i <= 1056; i++) {
+		for (int i = 1; i <= 5087; i++) {
 			inputList.add(i);
 		}
 		

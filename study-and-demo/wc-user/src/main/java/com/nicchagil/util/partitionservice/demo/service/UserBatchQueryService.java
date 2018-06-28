@@ -27,6 +27,11 @@ public class UserBatchQueryService extends AbstractPartitionService<Integer, Use
 	}
 	
 	@Override
+	public int getPartitionNum() {
+		return 200;
+	}
+
+	@Override
 	public List<User> doService(List<Integer> inputList) {
 		return this.userService.getByIdList(inputList);
 	}
