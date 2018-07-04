@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 
 import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.XmlFriendlyNameCoder;
+import com.thoughtworks.xstream.io.xml.XppDriver;
 
 public class XmlUtils {
 	
@@ -125,6 +127,25 @@ public class XmlUtils {
 	}
 	
 	@Test
+	public void toXmlDiyFieldTest() {
+		User user = new User();
+		user.setId(123);
+		user.setName("Nick Huang");
+		user.setAge(18);
+		user.setSex(1);
+		user.setAddress("深圳");
+		user.setCreateBy("Wc__System");
+		
+		XStream xstream = new XStream(new XppDriver(new XmlFriendlyNameCoder("$", "_")));
+		xstream.alias(User.class.getSimpleName(), User.class);
+		xstream.aliasField("$AGE", User.class, "age");
+		xstream.aliasField("CREATE_BY", User.class, "createBy");
+		
+		String xml = xstream.toXML(user);
+		this.logger.info("xml -> {}", xml);
+	}
+	
+	@Test
 	public void toBeanTest() {
 		String xml = "<xml><id>123</id><name>Nick Huang</name><age>18</age><sex>1</sex><address>深圳</address></xml>";
 		
@@ -152,6 +173,7 @@ public class XmlUtils {
 		private Integer age;
 		private Integer sex;
 		private String address;
+		private String createBy;
 
 		public Integer getId() {
 			return id;
@@ -191,6 +213,14 @@ public class XmlUtils {
 
 		public void setAddress(String address) {
 			this.address = address;
+		}
+		
+		public String getCreateBy() {
+			return createBy;
+		}
+
+		public void setCreateBy(String createBy) {
+			this.createBy = createBy;
 		}
 
 		@Override
