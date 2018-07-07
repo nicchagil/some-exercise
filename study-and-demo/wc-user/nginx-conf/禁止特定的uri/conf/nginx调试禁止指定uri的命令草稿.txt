@@ -1,0 +1,6 @@
+curl http://127.0.0.1/index.html
+curl http://127.0.0.1/index-nick.html
+
+vi /usr/local/nginx/conf/nginx.conf
+/usr/local/nginx/sbin/nginx -s reload
+less /usr/local/nginx/logs/error.log
