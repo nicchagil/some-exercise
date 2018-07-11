@@ -1,4 +1,4 @@
-package com.nicchagil.util.shiro;
+package com.nicchagil.util.shiro.test;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
