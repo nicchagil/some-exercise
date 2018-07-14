@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+	<!-- 加载配置文件 -->
+	<properties
+		url="file:///D:/git_workspace/some-exercise/study-and-demo/wc-user/src/main/resources/generatorConfig.properties" />
+
+	<!-- 数据库驱动包 -->
+	<classPathEntry
+		location="${mybatisGeneratorJarDir}/mysql-connector-java-5.1.39.jar" />
+
+	<context id="MySQLTables" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<!-- 不需要注释 -->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<!-- 数据库连接 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://127.0.0.1:33306/wc_user" userId="root"
+			password="123456">
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- 实体类 -->
+		<javaModelGenerator targetPackage="${basePackage}.entity"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<!-- 映射关系、标准化的动态SQL文件 -->
+		<sqlMapGenerator targetPackage="${basePackage}.mapper"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<!-- DAO -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="${basePackage}.mapper" targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<table tableName="t_user" domainObjectName="User">
+			<!-- 使用驼峰式属性命名 -->
+			<property name="useActualColumnNames" value="false" />
+		</table>
+
+	</context>
+</generatorConfiguration>
