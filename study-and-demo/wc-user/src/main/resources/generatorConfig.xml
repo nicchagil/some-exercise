@@ -53,5 +53,25 @@
 			<property name="useActualColumnNames" value="false" />
 		</table>
 
+		<table tableName="t_role" domainObjectName="Role">
+			<!-- 使用驼峰式属性命名 -->
+			<property name="useActualColumnNames" value="false" />
+		</table>
+
+		<table tableName="t_permission" domainObjectName="Permission">
+			<!-- 使用驼峰式属性命名 -->
+			<property name="useActualColumnNames" value="false" />
+		</table>
+
+		<table tableName="t_user_role" domainObjectName="UserRole">
+			<!-- 使用驼峰式属性命名 -->
+			<property name="useActualColumnNames" value="false" />
+		</table>
+
+		<table tableName="t_role_permission" domainObjectName="RolePermission">
+			<!-- 使用驼峰式属性命名 -->
+			<property name="useActualColumnNames" value="false" />
+		</table>
+
 	</context>
 </generatorConfiguration>
