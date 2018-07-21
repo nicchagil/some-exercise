@@ -29,6 +29,9 @@ public class WcUserApplication {
 		logger.error("启动完毕...（测试错误日志打印）");
 		LogPrintTest.printLogInSpecialPackage();
 		
+		/* 各地址打印 */
+		logger.error("Druid console : {}", "http://127.0.0.1:36680/druid/");
+		
 		/* 测试策略模式 */
 		UseStrategyService useStrategyService = ApplicationContextUtils.getBean(UseStrategyService.class);
 		useStrategyService.useStrategyPatternDemo(SomethingEnum.BALL);
