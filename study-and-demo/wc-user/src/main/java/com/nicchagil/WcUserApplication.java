@@ -1,5 +1,6 @@
 package com.nicchagil;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -13,6 +14,7 @@ import com.nicchagil.util.log.test.LogPrintTest;
 import com.nicchagil.util.spring.ApplicationContextUtils;
 
 @SpringBootApplication
+@MapperScan("com.nicchagil.orm.mapper")
 @EnableScheduling
 public class WcUserApplication {
 	
