@@ -1,4 +1,4 @@
-package com.nicchagil.util.service.base;
+package com.nicchagil.util.mapperbaseservice.base;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +13,7 @@ import com.nicchagil.util.spring.ApplicationContextUtils;
  * @param <E> 实体Example类型
  * @param <M> Mapper类型
  */
-public class BaseService <T, E, M> {
+public class MapperBaseService <T, E, M> {
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
